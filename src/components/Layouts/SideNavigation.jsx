@@ -133,7 +133,7 @@ export default function SideNavigation() {
                     </div>
                 </li>
                 <li className='w-full flex'>
-                    <Link to="/movies" className='py-5 border-b border-t border-b-white w-full text-center'>Movies</Link>
+                    <Link to="/movies" className='py-5 border-b border-t border-b-white w-full text-center'>Products</Link>
                 </li>
                 <li className='w-full flex justify-center mt-5'>
                     {jwtToken === "" ? (
