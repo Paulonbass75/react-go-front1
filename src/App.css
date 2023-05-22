@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    html, body{
+        height: 100%;
+        width: 100%;
+        background-color: #cfcfcf;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    @font-face {
+        font-family: Poppins;
+        src: url('./assets/Poppins-Regular.ttf');
+    }
+    
+}
+
+.open.first{
+    top: 50%!important;
+    rotate: 45deg;
+    transition: rotate .15s .15s, top .15s; 
+}
+.open.second{
+    opacity: 0;
+}
+.open.third{
+    top: 50%!important;
+    rotate: -45deg;
+    transition: rotate .15s .15s, top .15s; 
+}
+.first{
+    transition: rotate .15s, top .15s .15s; 
+}
+.second{
+    opacity: 1;
+}
+.third{
+    transition: rotate .15s, top .15s .15s; 
+}

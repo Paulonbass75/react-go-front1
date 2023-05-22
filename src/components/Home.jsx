@@ -7,10 +7,6 @@ const Home = () => {
       <div className="text-center">
         <h2>Home</h2>
         <p>Home page body content</p>
-        <hr />
-        <Link to="/Movies">
-          <img src={Logo} alt="Logo" />
-        </Link>
       </div>
     </>
   );

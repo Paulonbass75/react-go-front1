@@ -1,0 +1,197 @@
+import React from 'react'
+import { useState, useCallback, useEffect } from 'react';
+import logo from "../../images/store_logo.png";
+import { Link, useNavigate } from "react-router-dom";
+import SideNavigation from './SideNavigation';
+
+export default function TopNavigation() {
+
+    const openMobileNav = () => {
+        document.querySelector(".first").classList.toggle("open");
+        document.querySelector(".second").classList.toggle("open");
+        document.querySelector(".third").classList.toggle("open");
+        document.querySelector(".side-menu").classList.toggle("right-0");
+        document.querySelector(".side-menu").classList.toggle("-right-full");
+    }
+
+    const [jwtToken, setJwtToken] = useState("");
+    const [alertMessage, setAlertMessage] = useState("");
+    const [alertClassName, setAlertClassName] = useState("d-none");
+
+    const [tickInterval, setTickInterval] = useState();
+
+    const navigate = useNavigate();
+
+    const [categories, setCategories] = useState([]); // state for movies
+    const [error, setError] = useState(""); // state for error
+
+
+    const logOut = () => {
+        const requestOptions = {
+            method: "GET",
+            credentials: "include",
+        };
+        fetch(`/logout`, requestOptions)
+            .catch((err) => {
+                console.log("logged out", err);
+            })
+            .finally(() => {
+                setJwtToken("");
+                toggleRefresh(false);
+            });
+        navigate("/login");
+    };
+
+    const toggleRefresh = useCallback(
+        (status) => {
+            console.log("clicked");
+
+            if (status) {
+                console.log("turn on ticking");
+                let i = setInterval(() => {
+                    const requestOptions = {
+                        method: "GET",
+                        credentials: "include",
+                    };
+                    fetch(`/refresh`, requestOptions)
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data.access_token) {
+                                setJwtToken(data.access_token);
+                            }
+                        })
+                        .catch((error) => {
+                            console.log("user not logged in");
+                        });
+                }, 600000);
+                setTickInterval(i);
+                console.log("tickInterval", i);
+            } else {
+                console.log("turn off ticking");
+                console.log("turn off tickInterval", tickInterval);
+                setTickInterval(null);
+                clearInterval(tickInterval);
+            }
+        },
+        [tickInterval]
+    );
+
+    useEffect(() => {
+        if (jwtToken === "") {
+            const requestOptions = {
+                method: "GET",
+                credentials: "include",
+            };
+            fetch(`/refresh`, requestOptions)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.access_token) {
+                        setJwtToken(data.access_token);
+                        toggleRefresh(true);
+                    }
+                })
+                .catch((error) => {
+                    console.log("user not logged in", error);
+                });
+
+        }
+        //Gets genres for dropdown menu
+        const headers = new Headers();
+        headers.append("Content-Type", "application/json");
+
+
+        const requestOptions = {
+            method: "GET",
+            headers: headers,
+        };
+
+        fetch(`/genres`, requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.error) {
+                    setError(data.message);
+                } else {
+                    setCategories(data);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, [jwtToken, toggleRefresh]);
+    return (
+        <>
+            <nav className='bg-slate-800 w-full flex items-center flex-col sticky top-0 border-b-white border-b shadow-xl'>
+                <div className="w-full h-[30px] px-10 py-4 flex justify-end self-start items-center -right-[100px] top-2 border-b border-b-white text-sm max-lg:hidden">
+                    {jwtToken === "" ? (
+                        <Link to="/login" className='text-white hover:text-stone-400 font-poppins'>
+                            Login
+                        </Link>
+                    ) : (
+                        <button type="button" onClick={logOut} className='text-white hover:text-stone-400 font-poppins'>
+                            Logout
+                        </button>
+                    )}
+                </div>
+                <div className='w-10/12 justify-between flex flex-row h-[80px] relative max-lg:w-full max-lg:pl-10'>
+                    <div className="logo h-full w-fit flex justify-center items-center place-self-start">
+                        <img src={logo} alt="logo" className='m-0 max-lg:h-14 h-16' />
+                    </div>
+                    <div className=" h-full flex place-self-end max-lg:hidden">
+                        <ul className='flex w-full items-center text-white font-semibold text-lg font-poppins'>
+                            <li className='group relative flex justify-center'>
+                                <Link to="/" className="hover:text-[#00cbff] duration-200 mx-5 py-2">
+                                    Home
+                                </Link>
+                            </li>
+                            <li className='group relative flex justify-center'>
+                                <button type='button' className='relative hover:text-[#00cbff] duration-200 mx-5 py-2'>Categories <i className="bi bi-caret-right-fill text-sm before:content-['\F231'] group-hover:before:rotate-90 before:duration-200 before:transition-transform"></i></button>
+                                <div className='absolute top-full opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none duration-200 z-10'>
+                                    <ul className='flex flex-col max-h-80 overflow-y-scroll'>
+                                        {categories.map((g) => (
+                                            <Link
+                                                key={g.id}
+                                                to={`/Categories/${g.id}`}
+                                                state={{
+                                                    genreNmae: g.genre
+                                                }}
+                                                className='bg-black bg-opacity-90 hover:bg-slate-900 hover:bg-opacity-90 text-white hover:text-[#00cbff] duration-200 py-3 px-10 border-white border group-hover:pointer-events-auto text-center'>{g.genre}</Link>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </li>
+                            <li className='group relative flex justify-center'>
+                                <Link
+                                    to="/Movies"
+                                    className='relative hover:text-[#00cbff] duration-200 mx-5 py-2'
+                                >
+                                    Movies
+                                </Link>
+                            </li>
+                            {/* Left this here for reference on dropdown */}
+                            {/* <li className='group relative flex justify-center'>
+                                <a className='relative hover:text-[#00cbff] duration-200 mx-5 py-2' href="/">Store <i className="bi bi-caret-right-fill text-sm before:content-['\F231'] group-hover:before:rotate-90 before:duration-200 before:transition-transform"></i></a>
+                                <div className='absolute top-full opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none duration-200 z-10'>
+                                    <ul className='flex flex-col'>
+                                        <a href="/" className=' bg-black bg-opacity-90 hover:bg-slate-900 hover:bg-opacity-90 text-white hover:text-[#00cbff] duration-200 py-3 px-10 border-white border group-hover:pointer-events-auto text-center'>Home</a>
+                                        <a href="/" className=' bg-black bg-opacity-90 hover:bg-slate-900 hover:bg-opacity-90 text-white hover:text-[#00cbff] duration-200 py-3 px-10 border-white border group-hover:pointer-events-auto text-center'>About</a>
+                                        <a href="/" className=' bg-black bg-opacity-90 hover:bg-slate-900 hover:bg-opacity-90 text-white hover:text-[#00cbff] duration-200 py-3 px-10 border-white border group-hover:pointer-events-auto text-center'>Pricing</a>
+                                        <a href="/" className=' bg-black bg-opacity-90 hover:bg-slate-900 hover:bg-opacity-90 text-white hover:text-[#00cbff] duration-200 py-3 px-10 border-white border group-hover:pointer-events-auto text-center'>Store</a>
+                                        <a href="/" className=' bg-black bg-opacity-90 hover:bg-slate-900 hover:bg-opacity-90 text-white hover:text-[#00cbff] duration-200 py-3 px-10 border-white border group-hover:pointer-events-auto text-center'>Contact</a>
+                                    </ul>
+                                </div>
+                            </li> */}
+                        </ul>
+                    </div>
+                    <div className="mobile-menu h-full flex items-center absolute lg:hidden right-10">
+                        <div onClick={openMobileNav} className='hamburger-btn relative h-4 w-8 cursor-pointer'>
+                            <span className="h-[3px] w-full absolute bg-white top-0 first duration-300"></span>
+                            <span className="h-[3px] w-full absolute bg-white top-1/2 second duration-300"></span>
+                            <span className="h-[3px] w-full absolute bg-white top-full third duration-300"></span>
+                        </div>
+                    </div>
+                </div>
+                <SideNavigation />
+            </nav>
+        </>
+    )
+}

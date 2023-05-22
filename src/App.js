@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, Outlet, Link } from "react-router-dom";
 import Alert from "./components/Alert";
+import TopNavigation from "./components/Layouts/TopNavigation";
+import "./App.css";
 
 function App() {
   const [jwtToken, setJwtToken] = useState("");
@@ -18,7 +20,7 @@ function App() {
     };
     fetch(`/logout`, requestOptions)
       .catch((err) => {
-        console.log("loggged out", err);
+        console.log("logged out", err);
       })
       .finally(() => {
         setJwtToken("");
@@ -82,21 +84,10 @@ function App() {
   }, [jwtToken, toggleRefresh]);
 
   return (
-    <div className="container">
+    <div className="">
+      <TopNavigation data={jwtToken} />
       <div className="row">
-        <div className="col">
-          <h1>React With Go Sandbox</h1>
-        </div>
         <div className="col text-end">
-          {jwtToken === "" ? (
-            <Link to="/login">
-              <span className="badge bg-success">Login</span>
-            </Link>
-          ) : (
-            <a href="#!" onClick={logOut}>
-              <span className="badge bg-danger">Logout</span>
-            </a>
-          )}
         </div>
         <hr className="mb-3" />
       </div>
@@ -104,21 +95,6 @@ function App() {
         <div className="col-md-2">
           <nav>
             <div className="list-group">
-              <Link to="/" className="list-group-item list-group-item-action">
-                Home
-              </Link>
-              <Link
-                to="/Categories"
-                className="list-group-item list-group-item-action"
-              >
-                Categories
-              </Link>
-              <Link
-                to="/Movies"
-                className="list-group-item list-group-item-action"
-              >
-                Items
-              </Link>
               {jwtToken !== "" && (
                 <>
                   <Link
@@ -144,7 +120,7 @@ function App() {
             </div>
           </nav>
         </div>
-        <div className="col-md-10">
+        <div className="">
           <Alert message={alertMessage} className={alertClassName} />
           <Outlet
             context={{
