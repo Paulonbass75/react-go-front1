@@ -119,56 +119,75 @@ export default function TopNavigation() {
             });
     }, [jwtToken, toggleRefresh]);
     return (
-        <>
-            <nav className='bg-slate-800 w-full flex items-center flex-col sticky top-0 border-b-white border-b shadow-xl'>
-                <div className="w-full h-[30px] px-10 py-4 flex justify-end self-start items-center -right-[100px] top-2 border-b border-b-white text-sm max-lg:hidden">
-                    {jwtToken === "" ? (
-                        <Link to="/login" className='text-white hover:text-stone-400 font-poppins'>
-                            Login
+      <>
+        <nav className="bg-gradient-to-r from-[#0f1f47] to-[#5f6984] w-full flex items-center flex-col sticky top-0 border-b-white border-b shadow-xl">
+          <div className="w-full h-[30px] px-10 py-4 flex justify-end self-start items-center -right-[100px] top-2 border-b border-b-white text-sm max-lg:hidden">
+            {jwtToken === "" ? (
+              <Link
+                to="/login"
+                className="text-white hover:text-stone-400 font-poppins"
+              >
+                Login
+              </Link>
+            ) : (
+              <button
+                type="button"
+                onClick={logOut}
+                className="text-white hover:text-stone-300 font-poppins"
+              >
+                Logout
+              </button>
+            )}
+          </div>
+          <div className="w-10/12 justify-between flex flex-row h-[80px] relative max-lg:w-full max-lg:pl-10">
+            <div className="logo h-full w-fit flex justify-center items-center place-self-start">
+              <img src={logo} alt="logo" className="m-0 max-lg:h-14 h-16" />
+            </div>
+            <div className=" h-full flex place-self-end max-lg:hidden">
+              <ul className="flex w-full items-center text-white font-semibold text-lg font-poppins">
+                <li className="group relative flex justify-center">
+                  <Link
+                    to="/"
+                    className="hover:text-[#00cbff] duration-200 mx-5 py-2"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li className="group relative flex justify-center">
+                  <button
+                    type="button"
+                    className="relative hover:text-[#00cbff] duration-200 mx-5 py-2"
+                  >
+                    Categories{" "}
+                    <i className="bi bi-caret-right-fill text-sm before:content-['\F231'] group-hover:before:rotate-90 before:duration-200 before:transition-transform"></i>
+                  </button>
+                  <div className="absolute top-full opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none duration-200 z-10">
+                    <ul className="flex flex-col max-h-80 overflow-y-scroll">
+                      {categories.map((g) => (
+                        <Link
+                          key={g.id}
+                          to={`/Categories/${g.id}`}
+                          state={{
+                            genreNmae: g.genre,
+                          }}
+                          className="bg-black bg-opacity-90 hover:bg-slate-900 hover:bg-opacity-90 text-white hover:text-[#00cbff] duration-200 py-3 px-10 border-white border group-hover:pointer-events-auto text-center"
+                        >
+                          {g.genre}
                         </Link>
-                    ) : (
-                        <button type="button" onClick={logOut} className='text-white hover:text-stone-400 font-poppins'>
-                            Logout
-                        </button>
-                    )}
-                </div>
-                <div className='w-10/12 justify-between flex flex-row h-[80px] relative max-lg:w-full max-lg:pl-10'>
-                    <div className="logo h-full w-fit flex justify-center items-center place-self-start">
-                        <img src={logo} alt="logo" className='m-0 max-lg:h-14 h-16' />
-                    </div>
-                    <div className=" h-full flex place-self-end max-lg:hidden">
-                        <ul className='flex w-full items-center text-white font-semibold text-lg font-poppins'>
-                            <li className='group relative flex justify-center'>
-                                <Link to="/" className="hover:text-[#00cbff] duration-200 mx-5 py-2">
-                                    Home
-                                </Link>
-                            </li>
-                            <li className='group relative flex justify-center'>
-                                <button type='button' className='relative hover:text-[#00cbff] duration-200 mx-5 py-2'>Categories <i className="bi bi-caret-right-fill text-sm before:content-['\F231'] group-hover:before:rotate-90 before:duration-200 before:transition-transform"></i></button>
-                                <div className='absolute top-full opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none duration-200 z-10'>
-                                    <ul className='flex flex-col max-h-80 overflow-y-scroll'>
-                                        {categories.map((g) => (
-                                            <Link
-                                                key={g.id}
-                                                to={`/Categories/${g.id}`}
-                                                state={{
-                                                    genreNmae: g.genre
-                                                }}
-                                                className='bg-black bg-opacity-90 hover:bg-slate-900 hover:bg-opacity-90 text-white hover:text-[#00cbff] duration-200 py-3 px-10 border-white border group-hover:pointer-events-auto text-center'>{g.genre}</Link>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </li>
-                            <li className='group relative flex justify-center'>
-                                <Link
-                                    to="/Movies"
-                                    className='relative hover:text-[#00cbff] duration-200 mx-5 py-2'
-                                >
-                                    Movies
-                                </Link>
-                            </li>
-                            {/* Left this here for reference on dropdown */}
-                            {/* <li className='group relative flex justify-center'>
+                      ))}
+                    </ul>
+                  </div>
+                </li>
+                <li className="group relative flex justify-center">
+                  <Link
+                    to="/Movies"
+                    className="relative hover:text-[#00cbff] duration-200 mx-5 py-2"
+                  >
+                    Products
+                  </Link>
+                </li>
+                {/* Left this here for reference on dropdown */}
+                {/* <li className='group relative flex justify-center'>
                                 <a className='relative hover:text-[#00cbff] duration-200 mx-5 py-2' href="/">Store <i className="bi bi-caret-right-fill text-sm before:content-['\F231'] group-hover:before:rotate-90 before:duration-200 before:transition-transform"></i></a>
                                 <div className='absolute top-full opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none duration-200 z-10'>
                                     <ul className='flex flex-col'>
@@ -180,18 +199,21 @@ export default function TopNavigation() {
                                     </ul>
                                 </div>
                             </li> */}
-                        </ul>
-                    </div>
-                    <div className="mobile-menu h-full flex items-center absolute lg:hidden right-10">
-                        <div onClick={openMobileNav} className='hamburger-btn relative h-4 w-8 cursor-pointer'>
-                            <span className="h-[3px] w-full absolute bg-white top-0 first duration-300"></span>
-                            <span className="h-[3px] w-full absolute bg-white top-1/2 second duration-300"></span>
-                            <span className="h-[3px] w-full absolute bg-white top-full third duration-300"></span>
-                        </div>
-                    </div>
-                </div>
-                <SideNavigation />
-            </nav>
-        </>
-    )
+              </ul>
+            </div>
+            <div className="mobile-menu h-full flex items-center absolute lg:hidden right-10">
+              <div
+                onClick={openMobileNav}
+                className="hamburger-btn relative h-4 w-8 cursor-pointer"
+              >
+                <span className="h-[3px] w-full absolute bg-white top-0 first duration-300"></span>
+                <span className="h-[3px] w-full absolute bg-white top-1/2 second duration-300"></span>
+                <span className="h-[3px] w-full absolute bg-white top-full third duration-300"></span>
+              </div>
+            </div>
+          </div>
+          <SideNavigation />
+        </nav>
+      </>
+    );
 }
