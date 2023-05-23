@@ -101,7 +101,7 @@ function App() {
                     to="/admin/Movie/0"
                     className="list-group-item list-group-item-action"
                   >
-                    Add Movies
+                    Add Products
                   </Link>
                   <Link
                     to="/Admin"
