@@ -33,7 +33,7 @@ const Movie = () => {
   return (
     <div>
       <div >
-        <div className="flex flex-col min-h-full md:flex-row md:max-w-xl rounded-lg shadow-lg">
+        <div className="min-h-full md:flex-row md:max-w-xl rounded-lg shadow-lg">
           <h2>Movie: {movie.title}</h2>
           <small>
             <em>
