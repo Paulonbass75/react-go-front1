@@ -105,7 +105,7 @@ export default function TopNavigation() {
             headers: headers,
         };
 
-        fetch(`/genres`, requestOptions)
+        fetch(`/categories`, requestOptions)
             .then((response) => response.json())
             .then((data) => {
                 if (data.error) {
@@ -163,16 +163,16 @@ export default function TopNavigation() {
                   </button>
                   <div className="absolute top-full opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none duration-200 z-10">
                     <ul className="flex flex-col max-h-80 overflow-y-scroll">
-                      {categories.map((g) => (
+                      {categories.map((c) => (
                         <Link
-                          key={g.id}
-                          to={`/Categories/${g.id}`}
+                          key={c.id}
+                          to={`/Categories/${c.id}`}
                           state={{
-                            genreNmae: g.genre,
+                            categoryName: c.category,
                           }}
                           className="bg-black bg-opacity-90 hover:bg-slate-900 hover:bg-opacity-90 text-white hover:text-[#00cbff] duration-200 py-3 px-10 border-white border group-hover:pointer-events-auto text-center"
                         >
-                          {g.genre}
+                          {c.category}
                         </Link>
                       ))}
                     </ul>
