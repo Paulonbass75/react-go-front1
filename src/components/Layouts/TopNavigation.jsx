@@ -3,6 +3,7 @@ import { useState, useCallback, useEffect } from 'react';
 import logo from "../../images/store_logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import SideNavigation from './SideNavigation';
+// import SearchBar from '../SearchBar';
 
 export default function TopNavigation() {
 
@@ -122,6 +123,7 @@ export default function TopNavigation() {
       <>
         <nav className="bg-gradient-to-r from-[#0f1f47] to-[#5f6984] w-full flex items-center flex-col sticky top-0 border-b-white border-b shadow-xl">
           <div className="w-full h-[30px] px-10 py-4 flex justify-end self-start items-center -right-[100px] top-2 border-b border-b-white text-sm max-lg:hidden">
+            {/* <SearchBar /> */}
             {jwtToken === "" ? (
               <Link
                 to="/login"
