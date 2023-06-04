@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Movies() {
+export default function Products() {
   const [movies, setMovies] = useState([]); // state for movies
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function Movies() {
           {movies.map((m) => (
             <tr key={m.id}>
               <td>
-                <Link to={`/movies/${m.id}`}>{m.title}</Link>
+                <Link to={`/products/${m.id}`}>{m.title}</Link>
               </td>
               <td>{m.release_date}</td>
               <td>{m.mpaa_rating}</td>
