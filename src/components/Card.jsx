@@ -3,7 +3,7 @@
 import { useParams } from "react-router-dom";
 
  export default function Card() {
-  const [movie, setMovie] = useState({});
+  const [product, setproduct] = useState({});
   let { id } = useParams();
 
   useEffect(() => {
@@ -15,20 +15,20 @@ import { useParams } from "react-router-dom";
       headers: headers,
     };
 
-    fetch(`/movies/${id}`, requestOptions)
+    fetch(`/products/${id}`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        setMovie(data);
+        setproduct(data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [id]);
 
-  if (movie.genres) {
-    movie.genres = Object.values(movie.genres);
+  if (product.categories) {
+    product.categories = Object.values(product.categories);
   } else {
-    movie.genres = [];
+    product.categories = [];
   }
  
 
@@ -39,31 +39,31 @@ import { useParams } from "react-router-dom";
  return (
    <div>
      <div className="flex flex-col min-h-full md:flex-row md:max-w-xl rounded-lg shadow-lg">
-       <h2>Movie: {movie.title}</h2>
+       <h2>product: {product.title}</h2>
        <small>
          <em>
-           {movie.release_date}, {movie.runtime} minutes, Rated{""}
-           {movie.mpaa_rating}
+           {product.release_date}, {product.runtime} minutes, Rated{""}
+           {product.mpaa_rating}
          </em>
        </small>
        <br />
-       {movie.genres.map((g) => (
-         <span key={g.genre} className="badge bg-secondary me-2">
-           {g.genre}
+       {product.categories.map((g) => (
+         <span key={g.category} className="badge bg-secondary me-2">
+           {g.category}
          </span>
        ))}
        <hr />
 
-       {movie.Image !== "" && (
+       {product.Image !== "" && (
          <div className="mb-3">
            <img
-             src={`https://image.tmdb.org/t/p/w200/${movie.image}`}
+             src={`https://image.tmdb.org/t/p/w200/${product.image}`}
              alt="poster"
            />
          </div>
        )}
 
-       <p>{movie.description}</p>
+       <p>{product.description}</p>
      </div>
    </div>
  );

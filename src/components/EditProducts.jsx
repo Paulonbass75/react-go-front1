@@ -33,8 +33,8 @@ export default function EditMovies() {
     runtime: "",
     mpaa_rating: "",
     description: "",
-    genres: [],
-    genres_array: [Array(13).fill(false)],
+    categories: [],
+    categories_array: [Array(13).fill(false)],
   });
 
   // get id from url
@@ -58,8 +58,8 @@ export default function EditMovies() {
         runtime: "",
         mpaa_rating: "",
         description: "",
-        genres: [],
-        genres_array: [Array(13).fill(false)],
+        categories: [],
+        categories_array: [Array(13).fill(false)],
       });
 
       const headers = new Headers();
@@ -70,18 +70,18 @@ export default function EditMovies() {
         headers: headers,
       };
 
-      fetch(`/genres`, requestOptions)
+      fetch(`/categories`, requestOptions)
         .then((response) => response.json())
         .then((data) => {
           const checks = [];
           data.forEach((g) => {
-            checks.push({ id: g.id, checked: false, genre: g.genre });
+            checks.push({ id: g.id, checked: false, category: g.category });
           });
 
           setMovie((m) => ({
             ...m,
-            genres: checks,
-            genres_array: [],
+            categories: checks,
+            categories_array: [],
           }));
         })
         .catch((err) => {
@@ -113,18 +113,18 @@ export default function EditMovies() {
 
           const checks = [];
 
-          data.genres.forEach((g) => {
-            if (data.movie.genres_array.indexOf(g.id) !== -1) {
-              checks.push({ id: g.id, checked: true, genre: g.genre });
+          data.categories.forEach((g) => {
+            if (data.movie.categories_array.indexOf(g.id) !== -1) {
+              checks.push({ id: g.id, checked: true, category: g.category });
             } else {
-              checks.push({ id: g.id, checked: false, genre: g.genre });
+              checks.push({ id: g.id, checked: false, category: g.category });
             }
           });
 
           // set state
           setMovie({
             ...data.movie,
-            genres: checks,
+            categories: checks,
           });
         })
         .catch((err) => {
@@ -153,14 +153,14 @@ export default function EditMovies() {
 
     // https://sweetalert2.github.io/v9.html for alerts
 
-    if (movie.genres_array.length === 0) {
+    if (movie.categories_array.length === 0) {
       Swal.fire({
         title: "Error!",
-        text: "You must select at least one genre",
+        text: "You must select at least one category",
         icon: "error",
         confirmButtonText: "OK",
       });
-      errors.push("genres");
+      errors.push("categories");
     }
 
     setErrors(errors);
@@ -221,17 +221,17 @@ export default function EditMovies() {
     console.log("checked is", e.target.checked);
     console.log("position is", position);
 
-    let tmpArr = movie.genres;
+    let tmpArr = movie.categories;
     tmpArr[position].checked = e.target.checked;
 
-    let tmpIDs = movie.genres_array;
+    let tmpIDs = movie.categories_array;
     if (!e.target.checked) {
       tmpIDs.splice(tmpIDs.indexOf(e.target.value));
     } else {
       tmpIDs.push(parseInt(e.target.value, 10));
     }
 
-    setMovie({ ...movie, genres_array: tmpIDs, genres: tmpArr });
+    setMovie({ ...movie, categories_array: tmpIDs, categories: tmpArr });
   };
 
   const confirmDelete = () => {
@@ -335,19 +335,19 @@ export default function EditMovies() {
 
           <hr />
 
-          <h3>Genres</h3>
+          <h3>categories</h3>
 
-          {movie.genres && movie.genres.length > 1 && (
+          {movie.categories && movie.categories.length > 1 && (
             <>
-              {Array.from(movie.genres).map((g, index) => (
+              {Array.from(movie.categories).map((g, index) => (
                 <CheckBox
-                  title={g.genre}
-                  name={"genre"}
+                  title={g.category}
+                  name={"category"}
                   key={index}
-                  id={"genre-" + index}
+                  id={"category-" + index}
                   onChange={(e) => handleCheck(e, index)}
                   value={g.id}
-                  checked={movie.genres[index].checked}
+                  checked={movie.categories[index].checked}
                 />
               ))}
             </>

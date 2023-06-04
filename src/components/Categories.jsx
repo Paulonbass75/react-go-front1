@@ -18,7 +18,7 @@ export default function Categories() {
       headers: headers,
     };
 
-    fetch(`/genres`, requestOptions)
+    fetch(`/categories`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
        if (data.error) {
@@ -50,9 +50,9 @@ if (error !== "") {
           className='list-group-item list-group-item-action'
           to={`/Categories/${g.id}`}
           state={{ 
-            genreNmae: g.genre 
+            categoryNmae: g.category 
           }}
-          >{g.genre}</Link>
+          >{g.category}</Link>
         ))}
       </div>
       </div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Products() {
-  const [movies, setMovies] = useState([]); // state for movies
+  const [products, setProducts] = useState([]); // state for movies
 
   useEffect(() => {
     const headers = new Headers();
@@ -13,10 +13,10 @@ export default function Products() {
       headers: headers,
     };
 
-    fetch(`/movies`, requestOptions)
+    fetch(`/products`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        setMovies(data);
+        setProducts(data);
       })
       .catch((err) => {
         console.log(err);
@@ -24,7 +24,7 @@ export default function Products() {
   }, []);
   return (
     <div>
-      <h2>Movies</h2>
+      <h2>products</h2>
       <hr />
       <table className="table table-striped table-hover">
         <thead>
@@ -35,7 +35,7 @@ export default function Products() {
           </tr>
         </thead>
         <tbody>
-          {movies.map((m) => (
+          {products.map((m) => (
             <tr key={m.id}>
               <td>
                 <Link to={`/products/${m.id}`}>{m.title}</Link>
