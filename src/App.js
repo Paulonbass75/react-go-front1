@@ -86,7 +86,7 @@ function App() {
   return (
     <div className="">
       <TopNavigation data={jwtToken} />
-      <div className="row">
+      <div className="row mt-20">
         <div className="col text-end">
         </div>
         <hr className="mb-3" />

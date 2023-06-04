@@ -6,7 +6,7 @@
     html, body{
         height: 100%;
         width: 100%;
-        background-color: #cfcfcf;
+        background-color: #f0f0f0;
         margin: 0;
         box-sizing: border-box;
     }
@@ -39,4 +39,19 @@
 }
 .third{
     transition: rotate .15s, top .15s .15s; 
+}
+
+#root{
+    height: 1000vh!important;
+    position: relative;
+}
+
+#MyNav{
+    background-image: url('./assets/cms-light.gif');
+    height: 100px;
+    transition: all .3s;
+}
+#MyNav.show{
+    background-image: url('./assets/cms-dark.gif');
+    height: 60px;
 }
