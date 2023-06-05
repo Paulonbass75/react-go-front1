@@ -1,0 +1,122 @@
+[
+    {
+        "category": "Body Components",
+        "id": 1,
+        "children":[{
+            "part_name": "A-Pillars",
+            "desription": "Pillar that supports the windshield",
+            "price": "100",
+            "image": "https://www.autometaldirect.com/images/Pillars.jpg",
+            "id": 1
+        },
+        {
+            "part_name": "Bed Floor Assembly",
+            "desription": "The floor of the bed",
+            "price": "100",
+            "image": "https://www.autometaldirect.com/images/Bed-Floor-Assembly.jpg",
+            "id": 2
+        },
+        {
+            "part_name": "Bedsides",
+            "desription": "The sides of the bed",
+            "price": "100",
+            "image": "https://www.autometaldirect.com/images/BedSides.jpg",
+            "id": 3
+        },
+        {
+            "part_name": "Cab Panels",
+            "desription": "The panels of the cab",
+            "price": "100",
+            "image": "https://www.autometaldirect.com/images/Cab-Panels.jpg",
+            "id": 4
+        }
+        ]},
+    {
+"category": "Bumpers",
+"id": 2,
+"children":[{
+    "part_name": "Front Bumpers",
+    "desription": "The front bumper",
+    "price": "100",
+    "image": "https://www.autometaldirect.com/images/Front-Bumpers.jpg",
+    "id": 5
+},
+{
+    "part_name": "Rear Bumpers",
+    "desription": "The rear bumper",
+    "price": "100",
+    "image": "https://www.autometaldirect.com/images/Rear-Bumpers.jpg",
+    "id": 6
+}
+]},
+{
+"category": "Chassis & Frame",
+"id": 3,
+"children":[
+    {
+
+        "part_name": "Frame Rails",
+        "desription": "The frame rails",
+        "price": "100",
+        "image": "https://www.autometaldirect.com/images/FrameRails.jpg",
+        "id": 7
+    },
+    {
+        "part_name": "Frame Rails",
+        "desription": "The frame rails",
+        "price": "100",
+        "image": "https://www.autometaldirect.com/images/FrameRails.jpg",
+        "id": 8
+    },
+    {
+        "part_name": "Frame Rails",
+        "desription": "The frame rails",
+        "price": "100",
+        "image": "https://www.autometaldirect.com/images/FrameRails.jpg",
+        "id": 9
+    },
+    {
+        "part_name": "Frame Rails",
+        "desription": "The frame rails",
+        "price": "100",
+        "image": "https://www.autometaldirect.com/images/FrameRails.jpg",
+        "id": 10
+    }
+]},
+
+{
+"category": "Electrical",
+"id": 4,
+"children":[
+    {
+        "part_name": "Alternators",
+        "desription": "The alternator",
+        "price": "100",
+        "image": "https://www.autometaldirect.com/images/Convertible-Top-Switches.jpg",
+        "id": 11
+    },
+    {
+        "part_name": "Alternators",
+        "desription": "The alternator",
+        "price": "100",
+        "image": "https://www.autometaldirect.com/images/Fuel-Selector-Switches.jpg",
+        "id": 12
+    },
+    {
+        "part_name": "Alternators",
+        "desription": "The alternator",
+        "price": "100",
+        "image": "https://www.autometaldirect.com/images/Power-Window-Switches.jpg",
+        "id": 13
+    },
+    {
+        "part_name": "Alternators",
+        "desription": "The alternator",
+        "price": "100",
+        "image": "https://www.autometaldirect.com/images/Turn-Signal-Switches.jpg",
+        "id": 14
+    }
+]
+}
+]
+

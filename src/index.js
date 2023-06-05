@@ -14,6 +14,8 @@ import Product from "./components/Product";
 import OneCategory from "./components/OneCategory";
 import Card from "./components/Card";
 import SignUp from "./components/SignUp";
+// import ContactForm from "./components/ContactForm.jsx";
+import ShoppingCart from "./components/ShoppingCart";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +35,8 @@ const router = createBrowserRouter([
       { path: "/Login", element: <Login /> },
       { path: "/Card", element: <Card /> },
       { path: "/SignUp", element: <SignUp /> },
+      // { path: "/ContactForm", element: <ContactForm /> },
+      { path: "/ShoppingCart", element: <ShoppingCart /> },
     ],
   },
 ]);

@@ -113,40 +113,74 @@ export default function SideNavigation() {
             });
     }, [jwtToken, toggleRefresh]);
     return (
-        <div className="side-menu fixed h-screen w-[250px] bg-slate-800 top-[81px] -right-full duration-500 shadow-lg shadow-black">
-            <ul className='flex w-full items-center flex-col text-white font-semibold text-xl'>
-                <li className='w-full flex'>
-                    <Link to="/" className='py-5 border-b border-b-white w-full text-center'>Home</Link>
-                </li>
-                <li className='w-full flex flex-col'>
-                    <button type='button' className='py-5 border-b border-b-white w-full text-center' onClick={openDropdown}>Categories</button>
-                    <div className='flex flex-col max-h-[200px] h-auto overflow-y-scroll scale-y-0 duration-200 origin-top'>
-                        {categories.map((g) => (
-                            <Link
-                                key={g.id}
-                                to={`/Categories/${g.id}`}
-                                state={{
-                                    genreNmae: g.genre
-                                }}
-                                className='font-poppins text-md font-normal py-2 border-b-[1px] border-white pl-2'>{g.genre}</Link>
-                        ))}
-                    </div>
-                </li>
-                <li className='w-full flex'>
-                    <Link to="/movies" className='py-5 border-b border-t border-b-white w-full text-center'>Products</Link>
-                </li>
-                <li className='w-full flex justify-center mt-5'>
-                    {jwtToken === "" ? (
-                        <Link to="/login" className='text-white hover:text-stone-400 font-poppins'>
-                            Login
-                        </Link>
-                    ) : (
-                        <button type="button" onClick={logOut} className='text-white hover:text-stone-400 font-poppins'>
-                            Logout
-                        </button>
-                    )}
-                </li>
-            </ul>
-        </div>
-    )
+      <div className="side-menu fixed h-screen w-[250px] bg-slate-800 top-[81px] -right-full duration-500 shadow-lg shadow-black">
+        <ul className="flex w-full items-center flex-col text-white font-semibold text-xl">
+          <li className="w-full flex">
+            <Link
+              to="/"
+              className="py-5 border-b border-b-white w-full text-center"
+            >
+              Home
+            </Link>
+          </li>
+          <li className="w-full flex flex-col">
+            <button
+              type="button"
+              className="py-5 border-b border-b-white w-full text-center"
+              onClick={openDropdown}
+            >
+              Categories
+            </button>
+            <div className="flex flex-col max-h-[200px] h-auto overflow-y-scroll scale-y-0 duration-200 origin-top">
+              {categories.map((g) => (
+                <Link
+                  key={g.id}
+                  to={`/Categories/${g.id}`}
+                  state={{
+                    genreNmae: g.genre,
+                  }}
+                  className="font-poppins text-md font-normal py-2 border-b-[1px] border-white pl-2"
+                >
+                  {g.genre}
+                </Link>
+              ))}
+            </div>
+          </li>
+          <li className="w-full flex">
+            <Link
+              to="/shoppingcart"
+              className="py-5 border-b border-t border-b-white w-full text-center"
+            >
+              Orders
+            </Link>
+          </li>
+          <li className="w-full flex">
+            <Link
+              to="/ContactForm"
+              className="py-5 border-b border-t border-b-white w-full text-center"
+            >
+              Contact Us
+            </Link>
+          </li>
+          <li className="w-full flex justify-center mt-5">
+            {jwtToken === "" ? (
+              <Link
+                to="/login"
+                className="text-white hover:text-stone-400 font-poppins"
+              >
+                Login
+              </Link>
+            ) : (
+              <button
+                type="button"
+                onClick={logOut}
+                className="text-white hover:text-stone-400 font-poppins"
+              >
+                Logout
+              </button>
+            )}
+          </li>
+        </ul>
+      </div>
+    );
 }

@@ -14,13 +14,7 @@ export default function EditMovies() {
   const [error, setError] = useState(null);
   const [errors, setErrors] = useState([]);
 
-  const mpaaOptions = [
-    { id: "G", value: "G" },
-    { id: "PG", value: "PG" },
-    { id: "PG13", value: "PG13" },
-    { id: "R", value: "R" },
-    { id: "NC17", value: "NC17" },
-  ];
+ 
 
   const hasError = (key) => {
     return errors.indexOf(key) !== -1;
@@ -312,17 +306,7 @@ export default function EditMovies() {
             errorMsg={"Runtime required"}
           />
 
-          <Select
-            title={"MPAA Rating"}
-            className={"form-control"}
-            name={"mpaa_rating"}
-            options={mpaaOptions}
-            value={movie.mpaa_rating}
-            onChange={handleChange("mpaa_rating")}
-            placeHolder={"Choose..."}
-            errorDiv={hasError("mpaa_rating") ? "text-danger" : "d-none"}
-            errorMsg={"MPAA Rating required"}
-          />
+          
           <TextArea
             title={"Description"}
             rows={"3"}

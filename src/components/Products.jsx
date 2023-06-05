@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Card from "./Card";
 
 export default function Products() {
   const [products, setProducts] = useState([]); // state for movies
@@ -26,12 +27,14 @@ export default function Products() {
     <div>
       <h2>products</h2>
       <hr />
+      <Card>
+
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th>Movie</th>
-            <th>Release Date</th>
-            <th>Rating</th>
+            <th>Product</th>
+            <th>Part Number</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody>
@@ -46,6 +49,8 @@ export default function Products() {
           ))}
         </tbody>
       </table>
+      </Card>
+   
     </div>
   );
 }

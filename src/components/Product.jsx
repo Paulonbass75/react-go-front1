@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const Movie = () => {
-  const [movie, setMovie] = useState({});
+const Product = () => {
+  const [product, setProduct] = useState({});
   let { id } = useParams();
 
   useEffect(() => {
@@ -14,57 +14,57 @@ const Movie = () => {
       headers: headers,
     };
 
-    fetch(`/movies/${id}`, requestOptions)
+    fetch(`/products/${id}`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        setMovie(data);
+        setProduct(data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [id]);
 
-  if (movie.genres) {
-    movie.genres = Object.values(movie.genres);
+  if (product.category) {
+    product.category = Object.values(product.category);
   } else {
-    movie.genres = [];
+    product.category = [];
   }
 
   return (
     <div>
       <div >
         <div className="min-h-full md:flex-row md:max-w-xl rounded-lg shadow-lg">
-          <h2>Movie: {movie.title}</h2>
+          <h2>Product: {product.name}</h2>
           <small>
             <em>
-              {movie.release_date}, {movie.runtime} minutes, Rated{""}
-              {movie.mpaa_rating}
+              {product.name}, {product.description} ${""}
+              {product.part_number}
             </em>
           </small>
           <br />
-          {movie.genres.map((g) => (
-            <span key={g.genre} className="badge bg-secondary me-2">
-              {g.genre}
+          {product.categories.map((c) => (
+            <span key={c.category} className="badge bg-secondary me-2">
+              {c.category}
             </span>
           ))}
           <hr />
 
-          {movie.Image !== "" && (
+          {product.Image !== "" && (
             <div className="mb-3 mt-3">
               <img
                 className=" w-full h-full md:h-auto object-contain
          md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg"
-                src={`https://image.tmdb.org/t/p/w200/${movie.image}`}
+                src={`https://image.tmdb.org/t/p/w200/${product.image}`}
                 alt="poster"
               />
             </div>
           )}
 
-          <p>{movie.description}</p>
+          <p>{product.description}</p>
         </div>
       </div>
     </div>
   );
 };
 
-export default Movie;
+export default Product;

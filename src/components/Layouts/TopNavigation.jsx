@@ -129,7 +129,10 @@ export default function TopNavigation() {
   }, [jwtToken, toggleRefresh]);
   return (
     <>
-      <nav className="{/*bg-gradient-to-r from-[#0f1f47] to-[#5f6984] */} object-cover w-full flex items-center flex-col fixed top-0 border-b-white border-b shadow-xl show" id="MyNav">
+      <nav
+        className="{/*bg-gradient-to-r from-[#0f1f47] to-[#5f6984] */} object-cover w-full flex items-center flex-col fixed top-0 border-b-white border-b shadow-xl show"
+        id="MyNav"
+      >
         <div className="w-10/12 justify-between flex flex-row h-full relative max-lg:w-full max-lg:pl-10">
           {/* <SearchBar /> */}
           {jwtToken === "" ? (
@@ -148,9 +151,11 @@ export default function TopNavigation() {
               Logout
             </button>
           )}
+            <Link to="/">
           <div className="logo h-full w-fit flex justify-center items-center place-self-start">
             <img src={logo} alt="logo" className="m-0 h-5/6" />
           </div>
+            </Link>
           <div className=" h-full flex place-self-end max-lg:hidden">
             <ul className="flex w-full items-center text-white font-medium text-md font-poppins">
               <li className="group relative flex justify-center">
@@ -158,7 +163,7 @@ export default function TopNavigation() {
                   to="/"
                   className="hover:text-[#00cbff] duration-200 mx-5 py-2"
                 >
-                  Home
+                  {/* Home */}
                 </Link>
               </li>
               <li className="group relative flex justify-center">
@@ -188,10 +193,18 @@ export default function TopNavigation() {
               </li>
               <li className="group relative flex justify-center">
                 <Link
-                  to="/Movies"
+                  to="/ShoppingCart"
                   className="relative hover:text-[#00cbff] duration-200 mx-5 py-2"
                 >
-                  Products
+                  Orders
+                </Link>
+              </li>
+              <li className="group relative flex justify-center">
+                <Link
+                  to="/ContactForm"
+                  className="relative hover:text-[#00cbff] duration-200 mx-5 py-2"
+                >
+                  Contact Us
                 </Link>
               </li>
               {/* Left this here for reference on dropdown */}

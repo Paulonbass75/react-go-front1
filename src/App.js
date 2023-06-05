@@ -3,6 +3,8 @@ import { useNavigate, Outlet, Link } from "react-router-dom";
 import Alert from "./components/Alert";
 import TopNavigation from "./components/Layouts/TopNavigation";
 import "./App.css";
+// import Test from "./components/Test";
+
 
 function App() {
   const [jwtToken, setJwtToken] = useState("");
@@ -89,6 +91,7 @@ function App() {
       <div className="row mt-20">
         <div className="col text-end">
         </div>
+         
         <hr className="mb-3" />
       </div>
       <div className="row">
@@ -98,7 +101,7 @@ function App() {
               {jwtToken !== "" && (
                 <>
                   <Link
-                    to="/admin/Movie/0"
+                    to="/admin/Product/0"
                     className="list-group-item list-group-item-action"
                   >
                     Add Products

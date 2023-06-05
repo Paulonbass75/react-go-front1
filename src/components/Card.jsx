@@ -57,8 +57,8 @@ import { useParams } from "react-router-dom";
        {product.Image !== "" && (
          <div className="mb-3">
            <img
-             src={`https://image.tmdb.org/t/p/w200/${product.image}`}
-             alt="poster"
+             src={`https://www.autometaldirect.com/images/6/500-3569-L-frontside.jpg${product.image}`}
+             alt="img"
            />
          </div>
        )}
