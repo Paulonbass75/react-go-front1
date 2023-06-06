@@ -72,7 +72,7 @@ export default function Test() {
     //   </div>
     // </div>
     <div className="col-md-3" key={index}>
-      <div className="card mb-4 shadow-lg">
+      <div className="card mb-4 shadow-lg ">
         <img className="card-img-top" src={card.image} alt="Card cap" />
         <div className="card-body">
           <h5 className="card-title">{card.title}</h5>
@@ -117,9 +117,9 @@ export default function Test() {
   ));
 
   return (
-    <div>
-      <div className="container">
-        <div className="flex items-center">
+    <div className="container">
+      <div className="">
+        <div className="">
           <div className="col-md-12">
             <h1 className="text-center">Featured Products</h1>
             <div className="row justify-content-center">{featuredCards}</div>

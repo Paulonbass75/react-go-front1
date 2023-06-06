@@ -5,7 +5,7 @@ import Test from "./Test";
 const Home = () => {
   return (
     <>
-      <div className="text-center">
+      <div className="">
         <h2>Home</h2>
         <Test />
         <p>Home page body content</p>
