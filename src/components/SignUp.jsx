@@ -64,7 +64,7 @@ export default function SignUp() {
             <input type="text" name="zip_code" id="zip_code" className="border border-slate rounded-md w-full p-2" />
             <label htmlFor="country" className="font-poppins text-lg pb-5 font-medium">Country:</label>
             <input type="text" name="country" id="country" className="border border-slate rounded-md w-full p-2" />
-            <button type="submit" className="bg-slate text-white rounded-md w-full p-2 mt-5">Sign Up</button>
+            <button type="submit" className="bg-blue-700 hover:bg-blue-900 text-white rounded-md w-full p-2 mt-5">Sign Up</button>
           </form>
           </div>
       </div>
