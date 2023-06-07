@@ -71,7 +71,7 @@ export default function Test() {
     //     </div>
     //   </div>
     // </div>
-    <div className="col-md-3" key={index}>
+    <div className="me-20" key={index}>
       <div className="card mb-4 shadow-lg ">
         <img className="card-img-top" src={card.image} alt="Card cap" />
         <div className="card-body">
@@ -94,7 +94,7 @@ export default function Test() {
   ));
 
   const featuredCards = featured.map((card, index) => (
-    <div className="col-md-4" key={index}>
+    <div className="me-20" key={index}>
       <div className="card mb-4 shadow-lg">
         <img className="card-img-top" src={card.image} alt="Card cap" />
         <div className="card-body">
@@ -120,11 +120,11 @@ export default function Test() {
     <div className="container">
       <div className="">
         <div className="">
-          <div className="col-md-12">
-            <h1 className="text-center">Featured Products</h1>
-            <div className="row justify-content-center">{featuredCards}</div>
-            <h1 className="text-center">Products</h1>
-            <div className="row justify-content-center">{cards}</div>
+          <div className="p-5">
+            <h1 className="text-center text-2xl font-bold font-poppins my-10">Featured Products</h1>
+            <div className="flex flex-row justify-content-start">{featuredCards}</div>
+            <h1 className="text-center text-2xl font-bold font-poppins my-10">Products</h1>
+            <div className="flex flex-row justify-content-start">{cards}</div>
           </div>
         </div>
       </div>

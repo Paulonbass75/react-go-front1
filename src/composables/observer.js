@@ -4,9 +4,9 @@ let root = document.getElementById("root");
 let observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if(entry.isIntersecting){
-            document.getElementById("MyNav").classList.toggle('show')
+            document.getElementById("MyNav").classList.add('show')
         }else{
-            document.getElementById("MyNav").classList.toggle('show')
+            document.getElementById("MyNav").classList.remove('show')
         }
 })
 }, 

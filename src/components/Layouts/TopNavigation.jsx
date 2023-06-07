@@ -130,7 +130,7 @@ export default function TopNavigation() {
   return (
     <>
       <nav
-        className="{/*bg-gradient-to-r from-[#0f1f47] to-[#5f6984] */} object-cover w-full flex items-center flex-col fixed top-0 border-b-white border-b shadow-xl show"
+        className="{/*bg-gradient-to-r from-[#0f1f47] to-[#5f6984] */} object-cover w-full flex items-center flex-col fixed top-0 border-b-white border-b shadow-xl show z-20"
         id="MyNav"
       >
         <div className="w-10/12 justify-between flex flex-row h-full relative max-lg:w-full max-lg:pl-10">
