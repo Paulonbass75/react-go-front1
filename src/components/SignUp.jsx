@@ -43,7 +43,7 @@ export default function SignUp() {
           <form ref={form} onSubmit={handleSubmit}>
          
             <label htmlFor="email" className="font-poppins text-lg pb-5 font-medium">Email:</label>
-            <input type="email" name="email" id="email" className="border border-slate rounded-md w-full p-2" />
+            <input type="email" name="email" id="email" className="border border-slate rounded-md w-full p-2" required/>
             <label htmlFor="password" className="font-poppins text-lg pb-5 font-medium">Password:</label>
             <input type="password" name="password" id="password" className="border border-slate rounded-md w-full p-2" />
             <label htmlFor="password_confirmation" className="font-poppins text-lg pb-5 font-medium">Confirm Password:</label>
