@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import Input from "./form/Input";
 
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -74,6 +75,7 @@ const Login = () => {
 
             <input type="submit" className="w-full bg-[#01b6e3] shadow-md shadow-gray-400 rounded-lg py-2 text-lg font-poppins font-semibold text-white cursor-pointer" value="Login" />
           </form>
+        <a href="/SignUp">Don't have an account? Sign up here.</a>
         </div>
       </div>
     </div>

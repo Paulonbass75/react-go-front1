@@ -7,7 +7,7 @@ export default function Slideshow() {
 
     useEffect(()=>{
         slideshow("slider");
-    }, [""])
+    }, [])
   return (
     <div id="slider" className='h-[400px]'>
       <img src={image1} alt='example image' className='h-full w-full object-cover' />
