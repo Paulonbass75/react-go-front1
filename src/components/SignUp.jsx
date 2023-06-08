@@ -45,25 +45,25 @@ export default function SignUp() {
             <label htmlFor="email" className="font-poppins text-lg pb-5 font-medium">Email:</label>
             <input type="email" name="email" id="email" className="border border-slate rounded-md w-full p-2" required/>
             <label htmlFor="password" className="font-poppins text-lg pb-5 font-medium">Password:</label>
-            <input type="password" name="password" id="password" className="border border-slate rounded-md w-full p-2" />
+            <input type="password" name="password" id="password" className="border border-slate rounded-md w-full p-2" required />
             <label htmlFor="password_confirmation" className="font-poppins text-lg pb-5 font-medium">Confirm Password:</label>
-            <input type="password" name="password_confirmation" id="password_confirmation" className="border border-slate rounded-md w-full p-2" />
+            <input type="password" name="password_confirmation" id="password_confirmation" className="border border-slate rounded-md w-full p-2" required/>
             <label htmlFor="first_name" className="font-poppins text-lg pb-5 font-medium">First Name:</label>
-            <input type="text" name="first_name" id="first_name" className="border border-slate rounded-md w-full p-2" />
+            <input type="text" name="first_name" id="first_name" className="border border-slate rounded-md w-full p-2" required />
             <label htmlFor="last_name" className="font-poppins text-lg pb-5 font-medium">Last Name:</label>
-            <input type="text" name="last_name" id="last_name" className="border border-slate rounded-md w-full p-2" />
+            <input type="text" name="last_name" id="last_name" className="border border-slate rounded-md w-full p-2"required />
             <label htmlFor="phone_number" className="font-poppins text-lg pb-5 font-medium">Phone Number:</label>
-            <input type="text" name="phone_number" id="phone_number" className="border border-slate rounded-md w-full p-2" />
+            <input type="text" name="phone_number" id="phone_number" className="border border-slate rounded-md w-full p-2"required />
             <label htmlFor="address" className="font-poppins text-lg pb-5 font-medium">Address:</label>
-            <input type="text" name="address" id="address" className="border border-slate rounded-md w-full p-2" />
+            <input type="text" name="address" id="address" className="border border-slate rounded-md w-full p-2" required/>
             <label htmlFor="city" className="font-poppins text-lg pb-5 font-medium">City:</label>
-            <input type="text" name="city" id="city" className="border border-slate rounded-md w-full p-2" />
+            <input type="text" name="city" id="city" className="border border-slate rounded-md w-full p-2" required/>
             <label htmlFor="state" className="font-poppins text-lg pb-5 font-medium">State:</label>
-            <input type="text" name="state" id="state" className="border border-slate rounded-md w-full p-2" />
+            <input type="text" name="state" id="state" className="border border-slate rounded-md w-full p-2" required/>
             <label htmlFor="zip_code" className="font-poppins text-lg pb-5 font-medium">Zip Code:</label>
-            <input type="text" name="zip_code" id="zip_code" className="border border-slate rounded-md w-full p-2" />
+            <input type="text" name="zip_code" id="zip_code" className="border border-slate rounded-md w-full p-2" required/>
             <label htmlFor="country" className="font-poppins text-lg pb-5 font-medium">Country:</label>
-            <input type="text" name="country" id="country" className="border border-slate rounded-md w-full p-2" />
+            <input type="text" name="country" id="country" className="border border-slate rounded-md w-full p-2" required/>
             <button type="submit" className="bg-blue-700 hover:bg-blue-900 text-white rounded-md w-full p-2 mt-5">Sign Up</button>
           </form>
           </div>
