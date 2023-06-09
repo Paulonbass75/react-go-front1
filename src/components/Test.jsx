@@ -117,10 +117,10 @@ export default function Test() {
   ));
 
   return (
-    <div className="container">
+    <div className="container ">
       <div className="">
         <div className="">
-          <div className="p-5">
+          <div className="p-5 ">
             <h1 className="text-center text-2xl font-bold font-poppins my-10">Featured Products</h1>
             <div className="flex flex-row justify-content-start">{featuredCards}</div>
             <h1 className="text-center text-2xl font-bold font-poppins my-10">Products</h1>

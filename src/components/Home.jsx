@@ -7,7 +7,7 @@ const Home = () => {
     <>
       <div className="text-center w-full">
         <Slideshow />
-        <div className="w-11/12 mx-auto bg-white shadow-xl px-20 pt-10 pb-20">
+        <div className="w-11/12 mx-auto bg-white shadow-xl px-20 pt-10 pb-20 ">
           <Test />
         </div>
       </div>
