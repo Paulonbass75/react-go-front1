@@ -71,7 +71,7 @@ export default function Test() {
     //     </div>
     //   </div>
     // </div>
-    <div className="me-20" key={index}>
+    <div key={index}>
       <div className="card mb-4 shadow-lg ">
         <img className="card-img-top" src={card.image} alt="Card cap" />
         <div className="card-body">
@@ -94,14 +94,14 @@ export default function Test() {
   ));
 
   const featuredCards = featured.map((card, index) => (
-    <div className="me-20" key={index}>
+    <div key={index}>
       <div className="card mb-4 shadow-lg">
         <img className="card-img-top" src={card.image} alt="Card cap" />
         <div className="card-body">
           <h5 className="card-title">{card.title}</h5>
           <p className="card-text">{card.description}</p>
         </div>
-        <div className="d-flex justify-content-between align-items-center">
+        <div className="d-flex justify-between align-items-center">
           <div className="btn-group">
             <a href={card.link} className="btn btn-sm btn-outline-secondary">
               View
@@ -122,9 +122,9 @@ export default function Test() {
         <div className="">
           <div className="p-5 ">
             <h1 className="text-center text-2xl font-bold font-poppins my-10">Featured Products</h1>
-            <div className="flex flex-row justify-content-start">{featuredCards}</div>
-            <h1 className="text-center text-2xl font-bold font-poppins my-10">Products</h1>
-            <div className="flex flex-row justify-content-start">{cards}</div>
+            <div className="flex flex-row justify-evenly flex-wrap w-full">{featuredCards}</div>
+            <h1 className="text-center text-2xl font-bold font-poppins my-10 w-full">Products</h1>
+            <div className="flex flex-row justify-evenly flex-wrap">{cards}</div>
           </div>
         </div>
       </div>

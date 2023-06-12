@@ -9,20 +9,25 @@ export const slideshow = (id, options) => {
         let div = document.createElement("div");
         let image = document.createElement("img");
         // div.classList.add("w-full");
-        image.classList.add("h-full", "w-full", "object-cover", "aspect-[1920]", "duration-[1s]", "transition-all", "absolute", "z-1")
+        image.classList.add("h-full", "w-full", "object-cover", "aspect-[1920]", "duration-[1s]", "transition-all", "absolute", "z-1", "slider-img")
         image.id = `slider-img-${i}`;
         i++;
         image.setAttribute("src", item.src);
         // div.append(image);
         element.append(image);
     })
-        // let x = 0;
+        document.getElementById(`slider-img-1`).classList.add("showing")
+        let x = 0;
         // setInterval(()=>{
-        //     x = x+1;
-        //     while(x < 3){
+        //     if(x >= elements.length) x = 0
+        //     x = x + 1;
+        //         document.getElementById(`slider-img-${x - 1}`).classList.remove("showing")
+        //         document.getElementById(`slider-img-${x - 1}`).classList.add("transitioning-out")
+        //         document.getElementById(`slider-img-${x}`).classList.add("transitioning-in")
         //         setTimeout(()=>{
-        //             document.getElementById(`slider-img-${x}`).classList.toggle("-translate-x-full")
-        //         }, 4000)
-        //     }
+        //             document.getElementById(`slider-img-${x}`).classList.remove("transitioning-in")
+        //             document.getElementById(`slider-img-${x}`).classList.add("showing")
+        //             document.getElementById(`slider-img-${x-1}`).classList.remove("transitioning-out")
+        //         }, 300)
         // }, options?.interval || 3000)
 }
