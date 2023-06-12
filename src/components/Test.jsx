@@ -117,7 +117,7 @@ export default function Test() {
   ));
 
   return (
-    <div className="container ">
+    <div className="container  ">
       <div className="">
         <div className="">
           <div className="p-5 ">
@@ -131,3 +131,6 @@ export default function Test() {
     </div>
   );
 }
+
+
+//grid mx-3 gap-4 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 
