@@ -148,7 +148,7 @@ export default function SideNavigation() {
           </li>
           <li className="w-full flex">
             <Link
-              to="/shoppingcart"
+              to="/ShoppingCart"
               className="py-5 border-b border-t border-b-white w-full text-center"
             >
               Orders
