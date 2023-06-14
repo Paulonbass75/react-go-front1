@@ -4,6 +4,7 @@ import Alert from "./components/Alert";
 import TopNavigation from "./components/Layouts/TopNavigation";
 import "./App.css";
 // import Test from "./components/Test";
+import Footer from "./components/Layouts/Footer";
 
 
 function App() {
@@ -88,14 +89,13 @@ function App() {
   return (
     <div className="">
       <TopNavigation data={jwtToken} />
-      <div className="row mt-20">
-        <div className="col text-end">
-        </div>
-         
+      <div className="row mt-20 ">
+        <div className="col text-end"></div>
+
         <hr className="mb-3" />
       </div>
       <div className="row">
-        <div className="col-md-2">
+        {/* <div className="col-md-2">
           <nav>
             <div className="list-group">
               {jwtToken !== "" && (
@@ -122,7 +122,7 @@ function App() {
               )}
             </div>
           </nav>
-        </div>
+        </div> */}
         <div className="">
           <Alert message={alertMessage} className={alertClassName} />
           <Outlet
@@ -136,6 +136,7 @@ function App() {
           />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
