@@ -94,7 +94,7 @@ function App() {
 
         <hr className="mb-3" />
       </div>
-      <div className="row">
+      <div className=" mb-32 row">
         {/* <div className="col-md-2">
           <nav>
             <div className="list-group">

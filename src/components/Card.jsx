@@ -40,12 +40,12 @@ import { useParams } from "react-router-dom";
    <div>
      <div className="flex flex-col min-h-full md:flex-row md:max-w-xl rounded-lg shadow-lg">
        <h2>product: {product.title}</h2>
-       <small>
+       {/* <small>
          <em>
            {product.release_date}, {product.runtime} minutes, Rated{""}
            {product.mpaa_rating}
          </em>
-       </small>
+       </small> */}
        <br />
        {product.categories.map((g) => (
          <span key={g.category} className="badge bg-secondary me-2">

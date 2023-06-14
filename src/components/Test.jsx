@@ -1,5 +1,6 @@
 //this compnent is just for testing smaller components
 import React from "react";
+// import Modal from "../composables/Modal";
 
 export default function Test() {
   //Landing page with caards and featured products, search bar and scrollable content cards
@@ -94,6 +95,7 @@ export default function Test() {
   ));
 
   const featuredCards = featured.map((card, index) => (
+    
     <div key={index}>
       <div className="card mb-4 shadow-lg">
         <img className="card-img-top" src={card.image} alt="Card cap" />
@@ -117,6 +119,7 @@ export default function Test() {
   ));
 
   return (
+    
     <div className="container  ">
       <div className="">
         <div className="">
