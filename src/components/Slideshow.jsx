@@ -10,9 +10,9 @@ export default function Slideshow() {
     }, [])
   return (
     <div id="slider" className='h-[400px]'>
-      <img src={image1} alt='example image' className='h-full w-full object-cover' />
-      <img src={image2} alt='example image' className='h-full w-full object-cover' />
-      <img src={image3} alt='example image' className='h-full w-full object-cover' />
+      <img src={image1} alt='example' className='h-full w-full object-cover' />
+      <img src={image2} alt='example' className='h-full w-full object-cover' />
+      <img src={image3} alt='example' className='h-full w-full object-cover' />
     </div>
   )
 }

@@ -114,7 +114,7 @@ export default function TopNavigation() {
       headers: headers,
     };
 
-    fetch(`/categories`, requestOptions)
+    fetch(`/genres`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {

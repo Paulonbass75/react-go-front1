@@ -9,26 +9,26 @@ export default function Test() {
       title: "Card 1",
       description: "This is a card",
       image: "https://www.autometaldirect.com/images/Pillars.jpg",
-      link: "/",
+      link: "/shoppingcart",
     },
     {
       title: "Card 2",
       description: "This is a card",
       image: "https://www.autometaldirect.com/images/Bed-Floor-Assembly.jpg",
-      link: "/",
+      link: "/shoppingcart",
     },
     {
       title: "Card 3",
       description: "This is a card",
       image:
         "https://www.autometaldirect.com/images/Convertible-Top-Switches.jpg",
-      link: "/",
+      link: "/shoppingcart",
     },
     {
       title: "Card 4",
       description: "This is a card",
       image: "https://www.autometaldirect.com/images/Power-Window-Switches.jpg",
-      link: "/",
+      link: "/shoppingcart",
     },
   ];
 
@@ -38,14 +38,14 @@ export default function Test() {
       description: "This is a card",
       image: "https://picsum.photos/200/300",
 
-      link: "/",
+      link: "/shoppingcart",
     },
     {
       title: "Featured 2",
       description: "This is a card",
       image: "https://picsum.photos/200/300",
 
-      link: "/",
+      link: "/shoppingcart",
     },
   ];
 
