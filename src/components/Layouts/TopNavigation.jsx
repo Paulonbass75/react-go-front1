@@ -82,7 +82,7 @@ export default function TopNavigation() {
 
   useEffect(() => {
 
-    let target = document.getElementById("root");
+    let target = document.getElementById("App");
 
     observer.observe(target);
 

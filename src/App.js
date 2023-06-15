@@ -6,7 +6,6 @@ import "./App.css";
 // import Test from "./components/Test";
 import Footer from "./components/Layouts/Footer";
 
-
 function App() {
   const [jwtToken, setJwtToken] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
@@ -89,13 +88,13 @@ function App() {
   return (
     <div className="">
       <TopNavigation data={jwtToken} />
-      <div className="row mt-20 ">
+      {/* This row was creating a margin under the nav and above slideshow */}
+      {/* <div className="row mt-20 ">
         <div className="col text-end"></div>
 
         <hr className="mb-3" />
-      </div>
-      <div className=" mb-32 row">
-        {/* <div className="col-md-2">
+      </div> */}
+      {/* <div className="col-md-2">
           <nav>
             <div className="list-group">
               {jwtToken !== "" && (
@@ -123,6 +122,7 @@ function App() {
             </div>
           </nav>
         </div> */}
+      <div id="App">
         <div className="">
           <Alert message={alertMessage} className={alertClassName} />
           <Outlet
@@ -135,8 +135,8 @@ function App() {
             }}
           />
         </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 }
