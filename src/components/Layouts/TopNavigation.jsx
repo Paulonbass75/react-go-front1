@@ -186,7 +186,7 @@ export default function TopNavigation() {
                         }}
                         className="bg-slate-800 hover:bg-slate-800 hover:bg-opacity-90 text-white hover:text-[#00cbff] duration-200 py-3 px-10 border-white border group-hover:pointer-events-auto text-center"
                       >
-                        {c.category}
+                        {c.name}
                       </Link>
                     ))}
                   </ul>
