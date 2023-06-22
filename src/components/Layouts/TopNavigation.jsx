@@ -114,13 +114,14 @@ export default function TopNavigation() {
       headers: headers,
     };
 
-    fetch(`/genres`, requestOptions)
+    fetch(`http://10.0.1.244/api/v1/categories`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {
           setError(data.message);
         } else {
           setCategories(data);
+          
         }
       })
       .catch((err) => {
@@ -175,15 +176,15 @@ export default function TopNavigation() {
                   <i className="bi bi-caret-right-fill text-sm before:content-['\F231'] group-hover:before:rotate-90 before:duration-200 before:transition-transform"></i>
                 </button>
                 <div className="absolute top-full opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none duration-200 z-10">
-                  <ul className="flex flex-col max-h-80 overflow-y-scroll">
+                  <ul className="flex flex-col max-h-80 text-white overflow-y-scroll">
                     {categories.map((c) => (
                       <Link
-                        key={c.id}
+                        key={c.name}
                         to={`/Categories/${c.id}`}
                         state={{
-                          categoryName: c.category,
+                          categoryName: c.name,
                         }}
-                        className="bg-black bg-opacity-90 hover:bg-slate-900 hover:bg-opacity-90 text-white hover:text-[#00cbff] duration-200 py-3 px-10 border-white border group-hover:pointer-events-auto text-center"
+                        className="bg-slate-800 hover:bg-slate-800 hover:bg-opacity-90 text-white hover:text-[#00cbff] duration-200 py-3 px-10 border-white border group-hover:pointer-events-auto text-center"
                       >
                         {c.category}
                       </Link>

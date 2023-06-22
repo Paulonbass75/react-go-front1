@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useCallback, useEffect } from 'react';
 import logo from "../../images/store_logo.png";
 import { Link, useNavigate } from "react-router-dom";
-import Menu from "../Menus";
+// import Menu from "../Menus";
 
 export default function SideNavigation() {
     const [jwtToken, setJwtToken] = useState("");
@@ -107,6 +107,7 @@ export default function SideNavigation() {
               setError(data.message);
             } else {
               setCategories(data);
+              console.log(data);
             }
           })
           .catch((err) => {
@@ -134,11 +135,15 @@ export default function SideNavigation() {
             </button>
             <div className="flex flex-col max-h-[200px] h-auto overflow-y-scroll scale-y-0 duration-200 origin-top">
               {categories.map((c) => (
-                <Link to={`/Menu/${c.parent_id}`} key={c.parent_id} 
-                 
+                <Link
+                  to={`/Categories/${c.id}`}
+                  key={c.name}
+                  state={{
+                    categoryName: c.name,
+                  }}
                   className="font-poppins text-md font-normal py-2 border-b-[1px] border-white pl-2"
                 >
-                  {c.categories}
+                  {c.name}
                 </Link>
               ))}
             </div>
