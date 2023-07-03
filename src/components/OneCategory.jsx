@@ -45,15 +45,20 @@ export default function OneCategory() {
       <hr />
       {categories ? (
         <ul className="table tables-triped table-hover">
-          {categories.map((c) => (
+          {categories.map((c) => ( 
             
 
-           
             <li key={c.id}>
-              <Link href={`/c/${c.parent_id} &{c.id}`}>
-                {/* <img src={c.img} alt={c.name} /> */}
+              <Link href={`/c/${c.parent}`}>
+                <img src={c.img} alt={c.name} />
                 <h3 className="font-bold">
-                  {c.name} 
+                  {c.name && c.id.map(cdata => (
+                    <li key={cdata.id}>
+                        <Link to={`/c/${cdata.id}`}>
+                            {cdata.name}
+                            </Link>
+                            </li>
+                            ))}} 
                 </h3>
                 <p>{c.head_desc}</p>
               </Link>
