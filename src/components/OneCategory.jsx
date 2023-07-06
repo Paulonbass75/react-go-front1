@@ -9,7 +9,7 @@ export default function OneCategory() {
 
 
   // set stateful variable for categories
-  const [categories, setCategories] = useState([]);
+  const [cData, setData] = useState([]);
 
   // get id from url
   let { id } = useParams();
@@ -33,14 +33,13 @@ export default function OneCategory() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setCategories(data);
+        setData(data);
       });
   }, [id]);
   return (
-   
     <div className="container">
-      </div>
-    
+     
+    </div>
   );
 };
   
