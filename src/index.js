@@ -5,7 +5,7 @@ import App from "./App";
 import EditProducts from "./components/EditProducts";
 import ErrorPage from "./components/ErrorPage";
 import Categories from "./components/Categories";
-import GraphQl from "./components/GraphQl";
+// import GraphQl from "./components/GraphQl";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import ManageCatalogue from "./components/ManageCatalogue";
@@ -31,12 +31,13 @@ const router = createBrowserRouter([
       { path: "/admin/Products/0", element: <EditProducts /> },
       { path: "/admin/Products/:id", element: <EditProducts /> },
       { path: "/Admin", element: <ManageCatalogue /> },
-      { path: "/GraphQl", element: <GraphQl /> },
+      // { path: "/GraphQl", element: <GraphQl /> },
       { path: "/Login", element: <Login /> },
       { path: "/Card", element: <Card /> },
       { path: "/SignUp", element: <SignUp /> },
       { path: "/ContactForm", element: <ContactForm /> },
-      { path: "/ShoppingCart", element: <ShoppingCart /> },
+      { path: "/ShoppingCart", element: <ShoppingCart 
+      /> },
     ],
   },
 ]);

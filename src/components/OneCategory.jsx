@@ -7,6 +7,7 @@ export default function OneCategory() {
   const location = useLocation();
 //   const { categoryName } = location.state;
 
+
   // set stateful variable for categories
   const [categories, setCategories] = useState([]);
 
@@ -23,51 +24,23 @@ export default function OneCategory() {
       headers: headers,
     };
 
-    fetch(`http://10.0.1.244/api/v1/categories`, requestOptions)
+
+    //fetch data from api by id and map using array of categories and children
+
+
+
+    fetch(`http://10.0.1.244/api/v1/categories/${id}`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        if (data.error) {
-          console.log(data.message);
-        } else {
-          setCategories(data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+        console.log(data);
+        setCategories(data);
       });
   }, [id]);
-
-  // render category
-
   return (
-    <>
-      {/* <h2>Category {categoryName}</h2> */}
-      <hr />
-      {categories ? (
-        <ul className="table tables-triped table-hover">
-          {categories.map((c) => ( 
-            
-
-            <li key={c.id}>
-              <Link href={`/c/${c.parent}`}>
-                <img src={c.img} alt={c.name} />
-                <h3 className="font-bold">
-                  {c.name && c.id.map(cdata => (
-                    <li key={cdata.id}>
-                        <Link to={`/c/${cdata.id}`}>
-                            {cdata.name}
-                            </Link>
-                            </li>
-                            ))}} 
-                </h3>
-                <p>{c.head_desc}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>Category Not Found</p>
-      )}
-    </>
+   
+    <div className="container">
+      </div>
+    
   );
-}
+};
+  
