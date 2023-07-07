@@ -1,15 +1,15 @@
-import React from 'react'
+import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
+import Card from "./Card";
 
 export default function OneCategory() {
   // get prop passed from Categories.jsx
-  const location = useLocation();
-//   const { categoryName } = location.state;
-
+  // const location = useLocation();
+  //   const { categoryName } = location.state;
 
   // set stateful variable for categories
-  const [cData, setData] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   // get id from url
   let { id } = useParams();
@@ -23,23 +23,39 @@ export default function OneCategory() {
       method: "GET",
       headers: headers,
     };
-
-
-    //fetch data from api by id and map using array of categories and children
-
-
-
-    fetch(`http://10.0.1.244/api/v1/categories/${id}`, requestOptions)
+    fetch(`http://10.0.1.244/api/v2/categories/${id}`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setData(data);
+        setCategories(data.categories);
+        console.log(data.categories);
+      })
+      .catch((error) => {
+        console.log("error", error);
+        alert(error);
+        window.location.reload();
+        return;
       });
   }, [id]);
+
+  //fetch data from api by id and map using array of categories and children
+
   return (
-    <div className="container">
-     
+    //return mapped data from api and display in card
+    <div className="">
+      <div className="py-20 w-full mx-auto bg-white shadow-xl px-20">
+        <div className="flex-row justify-evenly flex-wrap w-full">
+          {categories.map((cData) => (
+              <Card
+                key={cData.id}
+                id={cData.id}
+                name={cData.name}
+                description={cData.head_desc}
+                image={cData.img}
+                price={cData.price}
+              />
+          ))}
+        </div>
+      </div>
     </div>
   );
-};
-  
+}

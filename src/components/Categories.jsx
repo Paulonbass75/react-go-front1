@@ -18,10 +18,10 @@ export default function Categories() {
       headers: headers,
     };
 
-    fetch(`/categories`, requestOptions)
+    fetch(`http://10.0.1.244/api/v2/categories`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-       if (data.error) {
+        if (data.error) {
           setError(data.message);
         } else {
           setCategories(data);
@@ -44,15 +44,15 @@ if (error !== "") {
       </h1>
       <hr />
       <div className='list-group'>
-        {categories.map((g) => (
+        {categories.map((c) => (
           <Link
-          key={g.id}
+          key={c.id}
           className='list-group-item list-group-item-action'
-          to={`/Categories/${g.id}`}
+          to={`/Categories/${c.id}`}
           state={{ 
-            categoryNmae: g.category 
+            categoryName: c.category 
           }}
-          >{g.category}</Link>
+          >{c.category}</Link>
         ))}
       </div>
       </div>

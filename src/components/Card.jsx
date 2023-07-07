@@ -1,8 +1,8 @@
- import React from 'react'
- import { useEffect, useState } from "react";
+import React from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
- export default function Card() {
+export default function Card(props) {
   const [product, setproduct] = useState({});
   let { id } = useParams();
 
@@ -30,42 +30,40 @@ import { useParams } from "react-router-dom";
   } else {
     product.categories = [];
   }
- 
 
- 
- 
- 
- 
- return (
-   <div>
-     <div className="flex flex-col min-h-full md:flex-row md:max-w-xl rounded-lg shadow-lg">
-       <h2>product: {product.title}</h2>
-       {/* <small>
+  console.log(props.image);
+
+  return (
+    <div className="card mx-4 my-4  rounded-lg shadow-xl max-w-md min-w-[28rem] inline-block bg-stone-100">
+      <h2 >Category: {props.name}</h2>
+      {/* <small>
          <em>
            {product.release_date}, {product.runtime} minutes, Rated{""}
            {product.mpaa_rating}
          </em>
        </small> */}
-       <br />
-       {product.categories.map((g) => (
-         <span key={g.category} className="badge bg-secondary me-2">
-           {g.category}
-         </span>
-       ))}
-       <hr />
+      <br />
+      {product.categories.map((c) => (
+        <span key={c.category} className="badge bg-secondary me-2">
+          {c.category}
+        </span>
+      ))}
+      <hr />
 
-       {product.Image !== "" && (
-         <div className="mb-3">
-           <img
-             src={`https://www.autometaldirect.com/images/6/500-3569-L-frontside.jpg${product.image}`}
-             alt="img"
-           />
-         </div>
-       )}
-
-       <p>{product.description}</p>
-     </div>
-   </div>
- );
+      {product.Image !== "" && (
+        <div className="mb-3">
+          <img
+            src={
+              props.img != null ? props.img : "https://picsum.photos/200/300"
+            }
+            alt="img"
+            className="object-fit w-full aspect-square"
+          />
+        </div>
+      )}
+      <div className="px-3 py-4">
+        <p>{props.description}</p>
+      </div>
+    </div>
+  );
 }
-    

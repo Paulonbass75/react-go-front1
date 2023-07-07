@@ -10,6 +10,9 @@ function App() {
   const [jwtToken, setJwtToken] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
   const [alertClassName, setAlertClassName] = useState("d-none");
+  const [categories, setCategories] = useState([]);
+  const [children, setChildren] = useState([]); // [category, setCategory
+  const [error, setError] = useState("");
 
   const [tickInterval, setTickInterval] = useState();
 
@@ -83,7 +86,27 @@ function App() {
           console.log("user not logged in", error);
         });
     }
-  }, [jwtToken, toggleRefresh]);
+
+    const requestOptions = {
+      method: "GET",
+    };
+    fetch(`http://10.0.1.244/api/v2/categories`, requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          setError(data.message);
+        } else {
+          setCategories(data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      
+
+    }, [jwtToken, toggleRefresh]);
+    console.log(categories);
+    
 
   return (
     <div className="">
