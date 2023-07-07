@@ -2,77 +2,77 @@ import React from "react";
 import { useState, useCallback, useEffect } from "react";
 import logo from "../../images/store_logo.png";
 import { Link, useNavigate } from "react-router-dom";
-const parentLinks = [
-  {
-    id: 1,
-    name: "Test 1",
-    children: [
-      { id: 11, name: "Child 1 Test 1" },
-      { id: 12, name: "Child 2 Test 1" },
-      { id: 13, name: "Child 3 Test 1" },
-      { id: 14, name: "Child 4 Test 1" },
-      { id: 15, name: "Child 5 Test 1" },
-    ],
-  },
-  {
-    id: 2,
-    name: "Test 2",
-    children: [
-      { id: 22, name: "Child 1 Test 2" },
-      { id: 23, name: "Child 2 Test 2" },
-      { id: 24, name: "Child 3 Test 2" },
-      { id: 25, name: "Child 4 Test 2" },
-      { id: 26, name: "Child 5 Test 2" },
-    ],
-  },
-  {
-    id: 3,
-    name: "Test 3"},
-  {
-    id: 4,
-    name: "Test 4",
-    children: [
-      { id: 41, name: "Child 1 Test 4" },
-      { id: 42, name: "Child 2 Test 4" },
-      { id: 43, name: "Child 3 Test 4" },
-      { id: 44, name: "Child 4 Test 4" },
-      { id: 45, name: "Child 5 Test 4" },
-    ],
-  },
-  {
-    id: 5,
-    name: "Test 5",
-    children: [
-      { id: 51, name: "Child 1 Test 5" },
-      { id: 52, name: "Child 2 Test 5" },
-      { id: 53, name: "Child 3 Test 5" },
-      { id: 54, name: "Child 4 Test 5" },
-      { id: 55, name: "Child 5 Test 5" },
-    ],
-  },
-  {
-    id: 6,
-    name: "Test 6",
-    children: [
-      { id: 61, name: "Child 1 Test 6" },
-      { id: 62, name: "Child 2 Test 6" },
-      { id: 63, name: "Child 3 Test 6" },
-      { id: 64, name: "Child 4 Test 6" },
-      { id: 65, name: "Child 5 Test 6" },
-    ],
-  },
-  {
-    id: 7,
-    name: "Test 7",
-    children: [
-      { id: 71, name: "Child 1 Test 6" },
-      { id: 72, name: "Child 2 Test 6" },
-      { id: 73, name: "Child 3 Test 6" },
-      { id: 74, name: "Child 4 Test 6" },
-      { id: 75, name: "Child 5 Test 6" },
-    ],
-  },
-];
+// const parentLinks = [
+//   {
+//     id: 1,
+//     name: "Test 1",
+//     children: [
+//       { id: 11, name: "Child 1 Test 1" },
+//       { id: 12, name: "Child 2 Test 1" },
+//       { id: 13, name: "Child 3 Test 1" },
+//       { id: 14, name: "Child 4 Test 1" },
+//       { id: 15, name: "Child 5 Test 1" },
+//     ],
+//   },
+//   {
+//     id: 2,
+//     name: "Test 2",
+//     children: [
+//       { id: 22, name: "Child 1 Test 2" },
+//       { id: 23, name: "Child 2 Test 2" },
+//       { id: 24, name: "Child 3 Test 2" },
+//       { id: 25, name: "Child 4 Test 2" },
+//       { id: 26, name: "Child 5 Test 2" },
+//     ],
+//   },
+//   {
+//     id: 3,
+//     name: "Test 3"},
+//   {
+//     id: 4,
+//     name: "Test 4",
+//     children: [
+//       { id: 41, name: "Child 1 Test 4" },
+//       { id: 42, name: "Child 2 Test 4" },
+//       { id: 43, name: "Child 3 Test 4" },
+//       { id: 44, name: "Child 4 Test 4" },
+//       { id: 45, name: "Child 5 Test 4" },
+//     ],
+//   },
+//   {
+//     id: 5,
+//     name: "Test 5",
+//     children: [
+//       { id: 51, name: "Child 1 Test 5" },
+//       { id: 52, name: "Child 2 Test 5" },
+//       { id: 53, name: "Child 3 Test 5" },
+//       { id: 54, name: "Child 4 Test 5" },
+//       { id: 55, name: "Child 5 Test 5" },
+//     ],
+//   },
+//   {
+//     id: 6,
+//     name: "Test 6",
+//     children: [
+//       { id: 61, name: "Child 1 Test 6" },
+//       { id: 62, name: "Child 2 Test 6" },
+//       { id: 63, name: "Child 3 Test 6" },
+//       { id: 64, name: "Child 4 Test 6" },
+//       { id: 65, name: "Child 5 Test 6" },
+//     ],
+//   },
+//   {
+//     id: 7,
+//     name: "Test 7",
+//     children: [
+//       { id: 71, name: "Child 1 Test 6" },
+//       { id: 72, name: "Child 2 Test 6" },
+//       { id: 73, name: "Child 3 Test 6" },
+//       { id: 74, name: "Child 4 Test 6" },
+//       { id: 75, name: "Child 5 Test 6" },
+//     ],
+//   },
+// ];
 // import Menu from "../Menus";
 
 export default function SideNavigation() {
@@ -190,7 +190,7 @@ export default function SideNavigation() {
   return (
     <div
       style={{ top: `${navHeight + 1}px` }}
-      className="side-menu fixed h-screen max-[400px]:w-full bg-slate-800 left-full duration-[1s] shadow-lg shadow-black"
+      className="side-menu fixed h-screen max-[500px]:w-full bg-slate-800 left-full duration-[1s] shadow-lg shadow-black"
     >
       <div className="flex flex-col overflow-y-scroll duration-[1s] h-full text-white w-full relative">
         <ul className="flex w-full items-center flex-col font-semibold text-xl">
@@ -253,7 +253,7 @@ export default function SideNavigation() {
           className="flex flex-col overflow-y-scroll overflow-x-hidden duration-[1s] absolute h-full w-full bg-slate-800 top-0 left-full"
         >
           <div className="py-5 ps-4 border-b border-b-white text-left">
-            <a
+            <a href=""
               role="button"
               className="underline underline-offset-2"
               onClick={openDropdown}
@@ -276,7 +276,7 @@ export default function SideNavigation() {
           ))}
 
           {/* Mason Test */}
-          {parentLinks.map((c) => (
+          {/* {parentLinks.map((c) => (
             ((c.children != null) &&
               <a
               role="button"
@@ -285,16 +285,16 @@ export default function SideNavigation() {
               {c.name}
               </a>
             )
-            
-              // <Link
+             */}
+              {/* // <Link */}
               // to="/"
               // className="font-poppins text-md font-normal py-5 border-b-[1px] border-white pl-2"
-              // >
+              {/* // >
               // {c.name}
               // </Link>
             
             
-              ))}
+              ))} */}
         </div>
       </div>
     </div>
