@@ -14,8 +14,12 @@ export default function TopNavigation() {
     document.querySelector(".first").classList.toggle("open");
     document.querySelector(".second").classList.toggle("open");
     document.querySelector(".third").classList.toggle("open");
-    document.querySelector(".side-menu").classList.toggle("right-0");
-    document.querySelector(".side-menu").classList.toggle("-right-full");
+    document.querySelector(".side-menu").classList.toggle("left-0");
+    document.querySelector(".side-menu").classList.toggle("left-full");
+    if(document.querySelector("[data-sideNav]").classList.contains("left-0")){
+      document.querySelector("[data-sideNav]").classList.add("left-full");
+      document.querySelector("[data-sideNav]").classList.remove("left-0");
+    }
   }
 
   const [jwtToken, setJwtToken] = useState("");
