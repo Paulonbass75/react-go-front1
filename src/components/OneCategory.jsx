@@ -44,6 +44,8 @@ export default function OneCategory() {
     <div className="">
       <div className="py-20 w-full mx-auto bg-white shadow-xl px-20">
         <div className="flex-row justify-evenly flex-wrap w-full">
+          <Link to={`/products/${id}`}>
+
           {categories.map((cData) => (
               <Card
                 key={cData.id}
@@ -54,6 +56,7 @@ export default function OneCategory() {
                 price={cData.price}
               />
           ))}
+          </Link>
         </div>
       </div>
     </div>

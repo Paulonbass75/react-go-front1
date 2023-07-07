@@ -87,21 +87,21 @@ function App() {
         });
     }
 
-    const requestOptions = {
-      method: "GET",
-    };
-    fetch(`http://10.0.1.244/api/v2/categories`, requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.error) {
-          setError(data.message);
-        } else {
-          setCategories(data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // const requestOptions = {
+    //   method: "GET",
+    // };
+    // fetch(`http://10.0.1.244/api/v2/categories`, requestOptions)
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     if (data.error) {
+    //       setError(data.message);
+    //     } else {
+    //       setCategories(data);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
       
 
     }, [jwtToken, toggleRefresh]);
