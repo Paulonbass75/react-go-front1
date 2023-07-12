@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useCallback, useEffect } from "react";
 import logo from "../../images/store_logo.png";
 import { Link, useNavigate } from "react-router-dom";
+import MkYrMdl from "./MkYrMdl";
 // const parentLinks = [
 //   {
 //     id: 1,
@@ -85,7 +86,7 @@ export default function SideNavigation() {
 
   const navigate = useNavigate();
 
-  const [categories, setCategories] = useState([]); // state for movies
+  const [categories, setCategories] = useState([]); // state for categories
   const [error, setError] = useState(""); // state for error
 
   const openDropdown = (e) => {
@@ -245,6 +246,9 @@ export default function SideNavigation() {
               </button>
             )}
           </li>
+          <li className="w-full flex justify-center mt-5">
+            <MkYrMdl />
+          </li>
         </ul>
 
         {/* Parent Categories Menu */}
@@ -258,7 +262,7 @@ export default function SideNavigation() {
               className="underline underline-offset-2"
               onClick={openDropdown}
             >
-              <i class="bi bi-arrow-left"></i>Go Back
+              <i className="bi bi-arrow-left"></i>Go Back
             </a>
           </div>
 
