@@ -25,19 +25,19 @@ useEffect(() => {
     method: "GET",
     headers: headers,
   };
-  fetch(`http://10.0.1.244/api/v2/filter` , requestOptions)
+  fetch(`http://10.0.1.244/api/v2/filter`, requestOptions)
     .then((response) => response.json())
-    .then((jsonData) => {
-      setData(jsonData);
-      setMakes([...new Set(jsonData.map((car) => car.makes))]);
-      setModels([...new Set(jsonData.map((car) => car.model))]);
-      setYears([...new Set(jsonData.map((car) => car.years))]);
+    .then((data) => {
+      setData(data);
+      setMakes([...new Set(makes.map((car) => car.makes))]);
+      // setModels([...new Set(model.map((car) => car.model))]);
+      setYears([...new Set(years.map((car) => car.years))]);
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
-      console.log(data);
+      console.log(data, makes ,years);
     });
-}, [years]);
+}, [data, makes, years]);
  
    const handleMakeChange = (event) => {
     setSelectedMake(event.target.value);

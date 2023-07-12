@@ -90,8 +90,8 @@ export default function SideNavigation() {
   const [error, setError] = useState(""); // state for error
 
   const openDropdown = (e) => {
-    document.querySelector("[data-sideNav]").classList.toggle("left-0");
-    document.querySelector("[data-sideNav]").classList.toggle("left-full");
+    document.querySelector("[data-sidenav]").classList.toggle("left-0");
+    document.querySelector("[data-sidenav]").classList.toggle("left-full");
   };
 
   const logOut = () => {
@@ -253,7 +253,7 @@ export default function SideNavigation() {
 
         {/* Parent Categories Menu */}
         <div
-          data-sideNav
+          data-sidenav
           className="flex flex-col overflow-y-scroll overflow-x-hidden duration-[1s] absolute h-full w-full bg-slate-800 top-0 left-full"
         >
           <div className="py-5 ps-4 border-b border-b-white text-left">
