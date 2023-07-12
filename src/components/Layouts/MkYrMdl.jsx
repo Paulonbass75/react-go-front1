@@ -32,12 +32,12 @@ useEffect(() => {
       setMakes([...new Set(makes.map((car) => car.makes))]);
       // setModels([...new Set(model.map((car) => car.model))]);
       setYears([...new Set(years.map((car) => car.years))]);
+      console.log(data, makes ,years);
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
-      console.log(data, makes ,years);
     });
-}, [data, makes, years]);
+}, []);
  
    const handleMakeChange = (event) => {
     setSelectedMake(event.target.value);
@@ -65,8 +65,8 @@ useEffect(() => {
     <div>
       <select value={selectedMake} onChange={handleMakeChange}>
         <option value="">All Makes</option>
-        {makes.map((make, index) => (
-          <option key={index} value={make}>{make}</option>
+        {makes.map((makes, index) => (
+          <option key={index} value={makes}>{makes}</option>
         ))}
       </select>
 
@@ -86,7 +86,7 @@ useEffect(() => {
 
       <ul>
         {filteredData.map((car, index) => (
-          <li key={index}>{car.make} - {car.model} - {car.year}</li>
+          <li key={index}>{car.makes} - {car.model} - {car.years}</li>
         ))}
       </ul>
     </div>

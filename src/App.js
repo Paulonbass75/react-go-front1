@@ -105,7 +105,7 @@ function App() {
       
 
     }, [jwtToken, toggleRefresh]);
-    console.log(categories);
+    // console.log(categories);
     
 
   return (
