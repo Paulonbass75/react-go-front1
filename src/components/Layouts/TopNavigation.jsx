@@ -1,26 +1,25 @@
-import React from 'react'
-import { useState, useCallback, useEffect, useRef } from 'react';
+import React from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import logo from "../../images/store_logo.png";
 import { Link, useNavigate } from "react-router-dom";
-import SideNavigation from './SideNavigation';
+import SideNavigation from "./SideNavigation";
 import { observer, callback } from "../../composables/observer";
 // import SearchBar from '../SearchBar';
 
 export default function TopNavigation() {
-
   const scrollRef = useRef(0);
 
   const openMobileNav = () => {
     document.querySelector(".first").classList.toggle("open");
     document.querySelector(".second").classList.toggle("open");
     document.querySelector(".third").classList.toggle("open");
-    document.querySelector(".side-menu").classList.toggle("left-0");
-    document.querySelector(".side-menu").classList.toggle("left-full");
-    if(document.querySelector("[data-sidenav]").classList.contains("left-0")){
-      document.querySelector("[data-sidenav]").classList.add("left-full");
-      document.querySelector("[data-sidenav]").classList.remove("left-0");
+    document.querySelector(".side-menu").classList.toggle("right-0");
+    document.querySelector(".side-menu").classList.toggle("-right-full");
+    if (document.querySelector("[data-sidenav]").classList.contains("right-0")) {
+      document.querySelector("[data-sidenav]").classList.add("-right-full");
+      document.querySelector("[data-sidenav]").classList.remove("right-0");
     }
-  }
+  };
 
   const [jwtToken, setJwtToken] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
@@ -32,7 +31,6 @@ export default function TopNavigation() {
 
   const [categories, setCategories] = useState([]); // state for movies
   const [error, setError] = useState(""); // state for error
-
 
   const logOut = () => {
     const requestOptions = {
@@ -85,8 +83,7 @@ export default function TopNavigation() {
   );
 
   useEffect(() => {
-
-    let target = document.getElementById("App");
+    let target = document.getElementById("NavBlock");
 
     observer.observe(target);
 
@@ -106,13 +103,10 @@ export default function TopNavigation() {
         .catch((error) => {
           console.log("user not logged in", error);
         });
-
     }
     //Gets genres for dropdown menu
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
-
-
     const requestOptions = {
       method: "GET",
       headers: headers,
@@ -125,7 +119,6 @@ export default function TopNavigation() {
           setError(data.message);
         } else {
           setCategories(data);
-          
         }
       })
       .catch((err) => {
@@ -134,8 +127,9 @@ export default function TopNavigation() {
   }, [jwtToken, toggleRefresh]);
   return (
     <>
+      <div id="NavBlock" className="h-[100px]"></div>
       <nav
-        className="{/*bg-gradient-to-r from-[#0f1f47] to-[#5f6984] */} object-cover w-full flex items-center flex-col fixed top-0 border-b-white border-b shadow-xl show z-20"
+        className="{/*bg-gradient-to-r from-[#0f1f47] to-[#5f6984] */} object-cover w-full flex items-center flex-col fixed top-0 border-b-white border-b shadow-xl z-20"
         id="MyNav"
       >
         <div className="w-10/12 justify-between flex flex-row h-full relative max-lg:w-full max-lg:pl-10">
@@ -156,11 +150,11 @@ export default function TopNavigation() {
               Logout
             </button>
           )}
-            <Link to="/">
-          <div className="logo h-full w-fit flex justify-center items-center place-self-start">
-            <img src={logo} alt="logo" className="m-0 h-5/6" />
-          </div>
-            </Link>
+          <Link to="/">
+            <div className="logo h-full w-fit flex justify-center items-center place-self-start">
+              <img src={logo} alt="logo" className="m-0 h-5/6" />
+            </div>
+          </Link>
           <div className=" h-full flex place-self-end max-lg:hidden">
             <ul className="flex w-full items-center text-white font-medium text-md font-poppins">
               <li className="group relative flex justify-center">
