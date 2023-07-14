@@ -29,9 +29,9 @@ useEffect(() => {
     .then((response) => response.json())
     .then((data) => {
       setData(data);
-      setMakes([...new Set(makes.map((car) => car.makes))]);
-      // setModels([...new Set(model.map((car) => car.model))]);
-      setYears([...new Set(years.map((car) => car.years))]);
+      setMakes(data.makes);
+      setModels(data.model);
+      setYears(data.years);
       console.log(data, makes ,years);
     })
     .catch((error) => {
@@ -51,42 +51,65 @@ useEffect(() => {
     setSelectedYear(event.target.value);
   };
 
-  // useEffect(() => {
-  //   const filteredData = data.filter(car =>
-  //     (selectedMake === '' || car.make === selectedMake) &&
-  //     (selectedModel === '' || car.model === selectedModel) &&
-  //     (selectedYear === '' || car.year === selectedYear)
-  //   );
-  //   setFilteredData(filteredData);
-  // }, [selectedMake, selectedModel, selectedYear, data]);
+  useEffect(() => {
+    if (data.length > 0) {
+      // Check if data is available before using filter
+      const newData = data.filter(car =>
+          (selectedMake === "" || car.make === selectedMake) &&
+          (selectedModel === "" || car.model === selectedModel) &&
+          (selectedYear === "" || car.year === selectedYear)
+      );
+      setFilteredData(newData);
+    }
+  }, [selectedMake, selectedModel, selectedYear, data]);
 
 
   return (
     <div>
-      <select value={selectedMake} onChange={handleMakeChange}>
+      <select
+        className="bg-slate-800 hover:bg-slate-800 hover:bg-opacity-90 text-white hover:text-[#00cbff] duration-200 py-3 px-10 border-white border group-hover:pointer-events-auto text-center"
+        value={selectedMake}
+        onChange={handleMakeChange}
+      >
         <option value="">All Makes</option>
-        {makes.map((makes, index) => (
-          <option key={index} value={makes}>{makes}</option>
+        {Object.keys(makes).map((key, i) => (
+          <option key={makes[i].id} value={makes[i].make}>
+            {makes[i].make}
+          </option>
         ))}
       </select>
 
-      <select value={selectedModel} onChange={handleModelChange}>
+      {/* <select
+        className="bg-slate-800 hover:bg-slate-800 hover:bg-opacity-90 text-white hover:text-[#00cbff] duration-200 py-3 px-10 border-white border group-hover:pointer-events-auto text-center"
+        value={selectedModel}
+        onChange={handleModelChange}
+      >
         <option value="">All Models</option>
-        {models.map((model, index) => (
-          <option key={index} value={model}>{model}</option>
+        {Object.keys(models).map((key, i) => (
+          <option key={models[i].id} value={models[i].id}>
+            {models[i].id}
+          </option>
         ))}
-      </select>
+      </select> */}
 
-      <select value={selectedYear} onChange={handleYearChange}>
+      <select
+        className="bg-slate-800 hover:bg-slate-800 hover:bg-opacity-90 text-white hover:text-[#00cbff] duration-200 py-3 px-10 border-white border group-hover:pointer-events-auto text-center"
+        value={selectedYear}
+        onChange={handleYearChange}
+      >
         <option value="">All Years</option>
-        {years.map((years, index) => (
-          <option key={index} value={years}>{years}</option>
+        {Object.keys(years).map((key, i) => (
+          <option key={years[i]} value={years[i]}>
+            {years[i]}
+          </option>
         ))}
       </select>
 
       <ul>
         {filteredData.map((car, index) => (
-          <li key={index}>{car.makes} - {car.model} - {car.years}</li>
+          <li key={index}>
+            {car.makes} - {car.model} - {car.years}
+          </li>
         ))}
       </ul>
     </div>
