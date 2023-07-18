@@ -2,7 +2,8 @@ import React from "react";
 import { useState, useCallback, useEffect } from "react";
 import logo from "../../images/store_logo.png";
 import { Link, useNavigate } from "react-router-dom";
-import MkYrMdl from "./MkYrMdl";
+// import MkYrMdl from "./MkYrMdl";
+import MkYrMdl2 from "./MkYrMdl2";
 // const parentLinks = [
 //   {
 //     id: 1,
@@ -246,7 +247,9 @@ export default function SideNavigation() {
             )}
           </li>
           <li className="w-full flex justify-center mt-5">
-            <MkYrMdl />
+            {/* <MkYrMdl /> */}
+            <MkYrMdl2 />
+
           </li>
         </ul>
 

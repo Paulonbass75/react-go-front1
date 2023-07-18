@@ -4,7 +4,8 @@ import logo from "../../images/store_logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import SideNavigation from "./SideNavigation";
 import { observer, callback } from "../../composables/observer";
-import MkYrMdl from "./MkYrMdl";
+// import MkYrMdl from "./MkYrMdl";
+import MkYrMdl2 from "./MkYrMdl2";
 // import SearchBar from '../SearchBar';
 
 export default function TopNavigation() {
@@ -157,7 +158,8 @@ export default function TopNavigation() {
             </div>
           </Link>
           <div className=" h-full flex place-self-end max-lg:hidden">
-          <MkYrMdl />
+          {/* <MkYrMdl /> */}
+          <MkYrMdl2 />
             <ul className="flex w-full items-center text-white font-medium text-md font-poppins">
               <li className="group relative flex justify-center">
                 <Link
