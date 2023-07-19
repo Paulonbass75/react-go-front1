@@ -105,63 +105,65 @@ export default function MkYrMdl2() {
         });
     }
   };
-
+useEffect(() => {
+  modelChg();
+}, [data.selYear, data.selMake, data.selModel]);
 
   const modelChg = () => {
     if (
-      this.selModel !== "null" &&
-      this.selMake &&
-      (this.selYear || this.selYear !== "null")
+      data.selModel !== "null" &&
+      data.selMake &&
+      (data.selYear || data.selYear !== "null")
     ) {
       axios
         .get(
           "http://10.0.1.244/api/v2/categories?model=" +
-            this.selModel +
+            data.selModel +
             "&year=" +
-            this.selYear +
+            data.selYear +
             "&make=" +
-            this.selMake
+            data.selMake
         )
         .then((response) => {
-          this.categories = response.data;
-          this.products = [];
+          data.categories = response.data;
+          data.products = [];
         });
     }
     if (
-      this.selModel !== "null" &&
-      this.selMake &&
-      (!this.selYear || this.selYear === "null")
+      data.selModel !== "null" &&
+      data.selMake &&
+      (!data.selYear || data.selYear === "null")
     ) {
       console.log("1");
     }
   };
 
   const catSel = (catId) => {
-    if (!this.selModel) {
-      this.selMake = null;
-      this.selYear = null;
+    if (!data.selModel) {
+      data.selMake = null;
+      data.selYear = null;
       axios
         .get("http://10.0.1.244/api/v2/categories/" + catId)
         .then((response) => {
-          this.categories = response.data.categories;
-          this.products = response.data.products;
+          data.categories = response.data.categories;
+          data.products = response.data.products;
         });
     }
-    if (this.selModel) {
+    if (data.selModel) {
       axios
         .get(
-          "http://10.0.1.244/api/v2/categories/" +
+          "/api/v2/categories/" +
             catId +
             "?year=" +
-            this.selYear +
+            data.selYear +
             "&make=" +
-            this.selMake +
+            data.selMake +
             "&model=" +
-            this.selModel
+            data.selModel
         )
         .then((response) => {
-          this.categories = response.data.categories;
-          this.products = response.data.products;
+          data.categories = response.data.categories;
+          data.products = response.data.products;
         });
       console.log(catId);
     }
@@ -229,10 +231,14 @@ export default function MkYrMdl2() {
                       }
                     >
                       <option value="null">Select Model</option>
-            {data.models.map((model) => (
-              <option key={model} value={model}>{model}</option>
-            ))}
+                    {data.models.map((model) => (
+                       <option key={model} value={model}>
+                         {model}
+                       </option>
+                     ))}
                     </select>
+
+                  
                   </div>
                 </div>
               </div>
