@@ -22,6 +22,8 @@ export default function MkYrMdl2() {
         years: response.data.years,
         makes: response.data.makes,
       }));
+      console.log(response.data.makes);
+      console.log(response.data.years);
     });
     axios.get("http://10.0.1.244/api/v2/categories").then((response) => {
       setData((prevState) => ({
@@ -108,6 +110,7 @@ export default function MkYrMdl2() {
                     this.categories = response.data;
                     this.products = [];
                   });
+                 
             }
             if(this.selModel !== 'null' && this.selMake && (!this.selYear || this.selYear === 'null'))
             {
@@ -150,74 +153,74 @@ export default function MkYrMdl2() {
 
   // ...
   // Rest of the component
-  return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-12">
-          <div className="panel panel-default">
-            <div className="panel-heading">
-              <div className="panel-body">
-                <div className="form-group">
-                  <label className="col-sm-2 control-label">Year</label>
-                  <div className="col-sm-10">
-                    <select
-                      className="form-control"
-                      id="selYear"
-                      onChange={(e) =>
-                        setData({ ...data, selYear: e.target.value })
-                      }
-                    >
-                      <option value="null">Select Year</option>
-                      {Object.keys(year).map((key, i) => (
-                        <option key={year[i].year} value={year[i].year}>
-                          {year[i].year}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label className="col-sm-2 control-label">Make</label>
-                  <div className="col-sm-10">
-                    <select
-                      className="form-control"
-                      id="selMake"
-                      onChange={(e) =>
-                        setData({ ...data, selMake: e.target.value })
-                      }
-                    >
-                      {/* <option value="null">Select Make</option>
-            {data.makes.map((make) => (
-              <option key={make} value={make}>{make}</option>
-            ))} */}
-                    </select>
-                  </div>
-                </div>
+//   return (
+//     <div className="container">
+//       <div className="row">
+//         <div className="col-md-12">
+//           <div className="panel panel-default">
+//             <div className="panel-heading">
+//               <div className="panel-body">
+//                 <div className="form-group">
+//                   <label className="col-sm-2 control-label">Year</label>
+//                   <div className="col-sm-10">
+//                     <select
+//                       className="form-control"
+//                       id="selYear"
+//                       onChange={(e) =>
+//                         setData({ ...data, selYear: e.target.value })
+//                       }
+//                     >
+//                       <option value="null">Select Year</option>
+//                       {Object.keys(year).map((key, i) => (
+//                         <option key={year[i].year} value={year[i].year}>
+//                           {year[i].year}
+//                         </option>
+//                       ))}
+//                     </select>
+//                   </div>
+//                 </div>
+//                 <div className="form-group">
+//                   <label className="col-sm-2 control-label">Make</label>
+//                   <div className="col-sm-10">
+//                     <select
+//                       className="form-control"
+//                       id="selMake"
+//                       onChange={(e) =>
+//                         setData({ ...data, selMake: e.target.value })
+//                       }
+//                     >
+//                       {/* <option value="null">Select Make</option>
+//             {data.makes.map((make) => (
+//               <option key={make} value={make}>{make}</option>
+//             ))} */}
+//                     </select>
+//                   </div>
+//                 </div>
 
-                <div className="form-group">
-                  <label className="col-sm-2 control-label">Model</label>
-                  <div className="col-sm-10">
-                    <select
-                      className="form-control"
-                      id="selModel"
-                      onChange={(e) =>
-                        setData({ ...data, selModel: e.target.value })
-                      }
-                    >
-                      {/* <option value="null">Select Model</option>
-            {data.models.map((model) => (
-              <option key={model} value={model}>{model}</option>
-            ))} */}
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+//                 <div className="form-group">
+//                   <label className="col-sm-2 control-label">Model</label>
+//                   <div className="col-sm-10">
+//                     <select
+//                       className="form-control"
+//                       id="selModel"
+//                       onChange={(e) =>
+//                         setData({ ...data, selModel: e.target.value })
+//                       }
+//                     >
+//                       {/* <option value="null">Select Model</option>
+//             {data.models.map((model) => (
+//               <option key={model} value={model}>{model}</option>
+//             ))} */}
+//                     </select>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
 }
 
 
