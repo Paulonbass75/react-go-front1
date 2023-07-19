@@ -32,61 +32,80 @@ export default function MkYrMdl2() {
       }));
     });
   }, []);
+  
+   useEffect(() => {
+     filterChg();
+   }, [data.selYear, data.selMake]);
 
   // methods
   const filterChg = () => {
-    if (this.selMake === "null") {
-      this.selMake = null;
+    if (data.selMake === "null") {
+      setData((prevState) => ({ ...prevState, selMake: null }));
     }
-    if (this.selModel === "null") {
-      this.selModel = null;
+    if (data.selModel === "null") {
+      setData((prevState) => ({ ...prevState, selModel: null }));
     }
-    if (this.selYear === "null") {
-      this.selYear = null;
+    if (data.selYear === "null") {
+      setData((prevState) => ({ ...prevState, selYear: null }));
     }
-    if (this.selYear && !this.selMake) {
+    if (data.selYear && !data.selMake) {
       axios
-        .get("http://10.0.1.244/api/v2/filter?year=" + this.selYear)
+        .get("http://10.0.1.244/api/v2/filter?year=" + data.selYear)
         .then((response) => {
-          this.years = response.data.years;
-          this.makes = response.data.makes;
-          this.selModel = null;
+          setData((prevState) => ({
+            ...prevState,
+            years: response.data.years,
+            makes: response.data.makes,
+            selModel: null,
+          }));
         });
     }
-    if (!this.selYear && this.selMake) {
+    if (!data.selYear && data.selMake) {
       axios
-        .get("http://10.0.1.244/api/v2/filter?make=" + this.selMake)
+        .get("http://10.0.1.244/api/v2/filter?make=" + data.selMake)
         .then((response) => {
-          this.years = response.data.years;
-          this.models = response.data.models;
-          this.selModel = null;
+          setData((prevState) => ({
+            ...prevState,
+            years: response.data.years,
+            models: response.data.models,
+            selModel: null,
+          }));
         });
     }
-    if (this.selYear && this.selMake) {
+    if (data.selYear && data.selMake) {
       axios
         .get(
           "http://10.0.1.244/api/v2/filter?year=" +
-            this.selYear +
+            data.selYear +
             "&make=" +
-            this.selMake
+            data.selMake
         )
         .then((response) => {
-          this.models = response.data.models;
-          this.makes = response.data.makes;
-          this.years = response.data.years;
-          this.selModel = null;
+          setData((prevState) => ({
+            ...prevState,
+            models: response.data.models,
+            makes: response.data.makes,
+            years: response.data.years,
+            selModel: null,
+          }));
           if (response.data.makeclr) {
-            this.selMake = null;
-            this.products = [];
+            setData((prevState) => ({
+              ...prevState,
+              selMake: null,
+              products: [],
+            }));
           }
           if (response.data.yearclr) {
-            this.selYear = null;
-            this.products = [];
+            setData((prevState) => ({
+              ...prevState,
+              selYear: null,
+              products: [],
+            }));
           }
-          console.log(response.data);
         });
     }
   };
+
 
   const modelChg = () => {
     if (
@@ -209,10 +228,10 @@ export default function MkYrMdl2() {
                         setData({ ...data, selModel: e.target.value })
                       }
                     >
-                      {/* <option value="null">Select Model</option>
+                      <option value="null">Select Model</option>
             {data.models.map((model) => (
               <option key={model} value={model}>{model}</option>
-            ))} */}
+            ))}
                     </select>
                   </div>
                 </div>
