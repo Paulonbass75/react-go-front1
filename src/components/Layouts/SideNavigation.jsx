@@ -246,10 +246,12 @@ export default function SideNavigation() {
               </button>
             )}
           </li>
-          <li className="w-full flex justify-center mt-5">
-            {/* <MkYrMdl /> */}
+          <li className="w-full flex justify-center mt-5">Vehicle
+            <dialog>   {/* <MkYrMdl /> */}
+
             <MkYrMdl2 />
 
+            </dialog>
           </li>
         </ul>
 
