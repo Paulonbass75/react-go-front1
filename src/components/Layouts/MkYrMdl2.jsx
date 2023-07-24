@@ -134,7 +134,7 @@ useEffect(() => {
       data.selMake &&
       (!data.selYear || data.selYear === "null")
     ) {
-      console.log("1");
+      console.log("modelChg", data.selModel);
     }
   };
 
@@ -172,7 +172,7 @@ useEffect(() => {
   // ...
   // Rest of the component
   return (
-    <div className="container">
+    <div className="container text-stone-600">
       <div className="row">
         <div className="col-md-12">
           <div className="panel panel-default">
@@ -190,10 +190,7 @@ useEffect(() => {
                     >
                       <option value="null">Select Year</option>
                       {Object.keys(data.years).map((key, i) => (
-                        <option
-                          key={data.years[i]}
-                          value={data.years[i]}
-                        >
+                        <option key={data.years[i]} value={data.years[i]}>
                           {data.years[i]}
                         </option>
                       ))}
@@ -212,7 +209,7 @@ useEffect(() => {
                     >
                       <option value="null">Select Make</option>
                       {Object.keys(data.makes).map((key, index) => (
-                        <option key={key} value={data.makes[index].make}>
+                        <option key={key} value={data.makes[index].id}>
                           {data.makes[index].make}
                         </option>
                       ))}
@@ -231,14 +228,12 @@ useEffect(() => {
                       }
                     >
                       <option value="null">Select Model</option>
-                    {data.models.map((model) => (
-                       <option key={model} value={model}>
-                         {model}
-                       </option>
-                     ))}
+                      {Object.keys(data.models).map((model, index) => (
+                        <option key={model} value={data.models[index].id}>
+                          {data.models[index].model}
+                        </option>
+                      ))}
                     </select>
-
-                  
                   </div>
                 </div>
               </div>
@@ -248,4 +243,4 @@ useEffect(() => {
       </div>
     </div>
   );
-}
+} 
