@@ -24,9 +24,9 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Home /> },
-      { path: "/Products", element: <Products /> },
+      { path: "/Products", element: <Products />, title: "Products" },
       { path: "/Product/:id", element: <Product /> },
-      { path: "/Categories", element: <Categories /> },
+      { path: "/Categories", element: <Categories />, title: "Categories" },
       { path: "/Categories/:id", element: <OneCategory /> },
       { path: "/admin/Products/0", element: <EditProducts /> },
       { path: "/admin/Products/:id", element: <EditProducts /> },

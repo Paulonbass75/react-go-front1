@@ -32,7 +32,7 @@ const Product = () => {
 
   return (
     <div>
-      <div >
+      <div>
         <div className="min-h-full md:flex-row md:max-w-xl rounded-lg shadow-lg">
           <h2>Product: {product.name}</h2>
           <small>
@@ -54,7 +54,12 @@ const Product = () => {
               <img
                 className=" w-full h-full md:h-auto object-contain
          md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg"
-                src={`https://image.tmdb.org/t/p/w200/${product.image}`}
+                src={
+                  `http://www.autometaldirect.com/images/` +
+                  product.manufacturers_id +
+                  "/" +
+                  product.products_image
+                }
                 alt="poster"
               />
             </div>

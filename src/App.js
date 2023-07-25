@@ -82,8 +82,8 @@ function App() {
             toggleRefresh(true);
           }
         })
-        .catch((error) => {
-          console.log("user not logged in", error);
+        .catch(() => {
+          console.log("user not logged in");
         });
     }
 
