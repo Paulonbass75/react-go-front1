@@ -83,17 +83,17 @@ export default function SideNavigation() {
   const [alertClassName, setAlertClassName] = useState("d-none");
   const [navHeight, setNavHeight] = useState("");
 
-  const openMobileNav = () => {
-    document.querySelector(".first").classList.toggle("open");
-    document.querySelector(".second").classList.toggle("open");
-    document.querySelector(".third").classList.toggle("open");
-    document.querySelector(".side-menu").classList.toggle("right-0");
-    document.querySelector(".side-menu").classList.toggle("-right-full");
-    if (document.querySelector("[data-sidenav]").classList.contains("right-0")) {
-      document.querySelector("[data-sidenav]").classList.add("-right-full");
-      document.querySelector("[data-sidenav]").classList.remove("right-0");
-    }
-  };
+  // const openMobileNav = () => {
+  //   document.querySelector(".first").classList.toggle("open");
+  //   document.querySelector(".second").classList.toggle("open");
+  //   document.querySelector(".third").classList.toggle("open");
+  //   document.querySelector(".side-menu").classList.toggle("right-0");
+  //   document.querySelector(".side-menu").classList.toggle("-right-full");
+  //   if (document.querySelector("[data-sidenav]").classList.contains("right-0")) {
+  //     document.querySelector("[data-sidenav]").classList.add("-right-full");
+  //     document.querySelector("[data-sidenav]").classList.remove("right-0");
+  //   }
+  // };
 
   const [tickInterval, setTickInterval] = useState();
 
@@ -211,7 +211,7 @@ export default function SideNavigation() {
             <Link
               to="/"
               className="py-5 border-b border-b-white w-full text-center"
-              onClick={openMobileNav()}
+              // onClick={openMobileNav()}
             >
               Home
             </Link>
@@ -229,7 +229,7 @@ export default function SideNavigation() {
             <Link
               to="/ShoppingCart"
               className="py-5 border-b border-t border-b-white w-full text-center"
-              onClick={openMobileNav()}
+              // onClick={openMobileNav()}
             >
               Orders
             </Link>
@@ -238,7 +238,7 @@ export default function SideNavigation() {
             <Link
               to="/ContactForm"
               className="py-5 border-b border-t border-b-white w-full text-center"
-              onClick={openMobileNav()}
+              // onClick={openMobileNav()}
             >
               Contact Us
             </Link>
@@ -248,7 +248,7 @@ export default function SideNavigation() {
               <Link
                 to="/login"
                 className="text-white hover:text-stone-400 font-poppins"
-                onClick={openMobileNav()}
+                // onClick={openMobileNav()}
               >
                 Login
               </Link>
@@ -288,7 +288,7 @@ export default function SideNavigation() {
           {categories.map((c) => (
             <Link
               to={`/Categories/${c.id}`}
-              onClick={openMobileNav()}
+              // onClick={openMobileNav()}
               key={c.name}
               state={{
                 categoryName: c.name,
