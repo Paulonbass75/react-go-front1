@@ -114,7 +114,7 @@ export default function TopNavigation() {
       headers: headers,
     };
 
-    fetch(`http://10.0.1.244/api/v1/categories`, requestOptions)
+    fetch(`http://10.0.1.244/api/v2/categories`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {

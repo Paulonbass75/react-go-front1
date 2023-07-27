@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import axios from "axios";
+
+
+// create a context for the filter data
+export const FilterContext = createContext();
 
 export default function MkYrMdl2() {
   // Initial setup
@@ -172,68 +176,70 @@ useEffect(() => {
   // ...
   // Rest of the component
   return (
-    <div className="container text-stone-600">
-      <div className="row">
-        <div className="col-md-12">
-          <div className="panel panel-default">
-            <div className="panel-heading">
-              <div className="panel-body">
-                <div className="form-group">
-                  <label className="col-sm-2 control-label">Year</label>
-                  <div className="col-sm-10">
-                    <select
-                      className="form-control"
-                      id="selYear"
-                      onChange={(e) =>
-                        setData({ ...data, selYear: e.target.value })
-                      }
-                    >
-                      <option value="null">Select Year</option>
-                      {Object.keys(data.years).map((key, i) => (
-                        <option key={data.years[i]} value={data.years[i]}>
-                          {data.years[i]}
-                        </option>
-                      ))}
-                    </select>
+    <FilterContext.Provider value={data}>
+      <div className="container text-stone-600">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="panel panel-default">
+              <div className="panel-heading">
+                <div className="panel-body">
+                  <div className="form-group">
+                    <label className="col-sm-2 control-label">Year</label>
+                    <div className="col-sm-10">
+                      <select
+                        className="form-control"
+                        id="selYear"
+                        onChange={(e) =>
+                          setData({ ...data, selYear: e.target.value })
+                        }
+                      >
+                        <option value="null">Select Year</option>
+                        {Object.keys(data.years).map((key, i) => (
+                          <option key={data.years[i]} value={data.years[i]}>
+                            {data.years[i]}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div className="form-group">
-                  <label className="col-sm-2 control-label">Make</label>
-                  <div className="col-sm-10">
-                    <select
-                      className="form-control"
-                      id="selMake"
-                      onChange={(e) =>
-                        setData({ ...data, selMake: e.target.value })
-                      }
-                    >
-                      <option value="null">Select Make</option>
-                      {Object.keys(data.makes).map((key, index) => (
-                        <option key={key} value={data.makes[index].id}>
-                          {data.makes[index].make}
-                        </option>
-                      ))}
-                    </select>
+                  <div className="form-group">
+                    <label className="col-sm-2 control-label">Make</label>
+                    <div className="col-sm-10">
+                      <select
+                        className="form-control"
+                        id="selMake"
+                        onChange={(e) =>
+                          setData({ ...data, selMake: e.target.value })
+                        }
+                      >
+                        <option value="null">Select Make</option>
+                        {Object.keys(data.makes).map((key, index) => (
+                          <option key={key} value={data.makes[index].id}>
+                            {data.makes[index].make}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
-                </div>
 
-                <div className="form-group">
-                  <label className="col-sm-2 control-label">Model</label>
-                  <div className="col-sm-10">
-                    <select
-                      className="form-control"
-                      id="selModel"
-                      onChange={(e) =>
-                        setData({ ...data, selModel: e.target.value })
-                      }
-                    >
-                      <option value="null">Select Model</option>
-                      {Object.keys(data.models).map((model, index) => (
-                        <option key={model} value={data.models[index].id}>
-                          {data.models[index].model}
-                        </option>
-                      ))}
-                    </select>
+                  <div className="form-group">
+                    <label className="col-sm-2 control-label">Model</label>
+                    <div className="col-sm-10">
+                      <select
+                        className="form-control"
+                        id="selModel"
+                        onChange={(e) =>
+                          setData({ ...data, selModel: e.target.value })
+                        }
+                      >
+                        <option value="null">Select Model</option>
+                        {Object.keys(data.models).map((model, index) => (
+                          <option key={model} value={data.models[index].id}>
+                            {data.models[index].model}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -241,6 +247,6 @@ useEffect(() => {
           </div>
         </div>
       </div>
-    </div>
+    </FilterContext.Provider>
   );
 } 
