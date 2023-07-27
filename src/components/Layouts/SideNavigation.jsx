@@ -173,7 +173,7 @@ export default function SideNavigation() {
           }
         })
         .catch((error) => {
-          console.log("user not logged in", error);
+          console.log("user not logged in");
         });
     }
     //Gets genres for dropdown menu
