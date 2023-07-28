@@ -77,6 +77,20 @@ export const DBProvider = ({ children }) => {
     }
   }
 
+  const getProductbyCategory = async (categoryId, selYear, selMake, selModel) => {
+    try {
+      const result = await axios.get(`http://10.0.1.244/api/v2/categories/${categoryId}?model=${selModel}&year=${selYear}&make=${selMake}`);
+      console.log(result);
+      const products = result.data;
+      setFilteredProducts([])
+      products.forEach((category) => {
+        setFilteredProducts((filteredProducts) => [...filteredProducts, category]);
+      });
+    } catch (err) {
+      return console.log(err);
+    }
+  }
+
   const setSelectMakes = () => {};
 
   const setSelectModels = () => {};

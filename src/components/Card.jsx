@@ -35,13 +35,8 @@ export default function Card(props) {
 
   return (
     <div className="card mx-4 my-4  rounded-lg shadow-xl max-w-md min-w-[28rem] inline-block bg-stone-100">
-      <h2 >Category: {props.name}</h2>
-      {/* <small>
-         <em>
-           {product.release_date}, {product.runtime} minutes, Rated{""}
-           {product.mpaa_rating}
-         </em>
-       </small> */}
+      <h2 >{props.name}</h2>
+     
       <br />
       {product.categories.map((c) => (
         <span key={c.category} className="badge bg-secondary me-2">

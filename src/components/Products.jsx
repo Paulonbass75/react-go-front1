@@ -1,56 +1,48 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { DBProvider } from "./contexts/Context";
 import Card from "./Card";
 
-export default function Products() {
-  const [products, setProducts] = useState([]); // state for movies
+function ProductList() {
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const headers = new Headers();
-    headers.append("Content-Type", "application/json");
-
-    const requestOptions = {
-      method: "GET",
-      headers: headers,
-    };
-
-    fetch(`/products`, requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    axios.get("/api/v2/products").then((response) => {
+      setProducts(response.data);
+    });
   }, []);
-  return (
-    <div>
-      <h2>products</h2>
-      <hr />
-      <Card>
 
-      <table className="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Part Number</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((m) => (
-            <tr key={m.id}>
-              <td>
-                <Link to={`/products/${m.id}`}>{m.title}</Link>
-              </td>
-              <td>{m.release_date}</td>
-              <td>{m.mpaa_rating}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      </Card>
-   
-    </div>
+  return (
+    <DBProvider>
+<Card>
+
+      <div className="grid lg:grid-cols-5 md:grid-cols-3 gap-3 m-4 place-content-center">
+        {products.map((product, index) => (
+          <div
+            key={index}
+            value={product.products_id}
+            className="max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+          >
+            <a href="#">
+              <img
+                className="rounded-t-lg w-full"
+                src={`http://www.autometaldirect.com/images/${product.manufacturers_id}/${product.products_image}`}
+                alt=""
+              />
+            </a>
+            <div className="p-5">
+              <a>
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  {product.products_model}
+                </h5>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+</Card>
+    </DBProvider>
   );
 }
+
+export default ProductList;
