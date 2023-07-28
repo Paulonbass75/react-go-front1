@@ -9,25 +9,30 @@ export const slideshow = (id, options) => {
         let div = document.createElement("div");
         let image = document.createElement("img");
         // div.classList.add("w-full");
-        image.classList.add("h-full", "w-full", "object-cover", "aspect-[1920]", "duration-[1s]", "transition-all", "absolute", "z-1", "slider-img")
+        image.classList.add("h-full", "w-full", "object-cover", "aspect-[1920]", "absolute", "z-1", "slider-img")
         image.id = `slider-img-${i}`;
         i++;
         image.setAttribute("src", item.src);
+        image.setAttribute("alt", "Slideshow image");
         // div.append(image);
         element.append(image);
     })
         document.getElementById(`slider-img-1`).classList.add("showing")
-        let x = 0;
-        // setInterval(()=>{
-        //     if(x >= elements.length) x = 0
-        //     x = x + 1;
-        //         document.getElementById(`slider-img-${x - 1}`).classList.remove("showing")
-        //         document.getElementById(`slider-img-${x - 1}`).classList.add("transitioning-out")
-        //         document.getElementById(`slider-img-${x}`).classList.add("transitioning-in")
-        //         setTimeout(()=>{
-        //             document.getElementById(`slider-img-${x}`).classList.remove("transitioning-in")
-        //             document.getElementById(`slider-img-${x}`).classList.add("showing")
-        //             document.getElementById(`slider-img-${x-1}`).classList.remove("transitioning-out")
-        //         }, 300)
-        // }, options?.interval || 3000)
+        let nextNum = 1;
+        setInterval(() => {
+            document.getElementById(`slider-img-${nextNum}`).classList.remove("showing")
+            document.getElementById(`slider-img-${nextNum}`).classList.add("transitioning-out")
+            nextNum+=1
+            let prevNum = nextNum - 1
+            setTimeout(() => {
+                document.getElementById(`slider-img-${prevNum != 1 ? prevNum : 1}`).classList.remove("transitioning-out")
+            }, 1000)
+            console.log( nextNum > elements.length);
+            if(nextNum > elements.length) nextNum = 1;
+            document.getElementById(`slider-img-${nextNum}`).classList.add("transitioning-in")
+            setTimeout(() => {
+                document.getElementById(`slider-img-${nextNum}`).classList.remove("transitioning-in")
+            }, 1000)
+            document.getElementById(`slider-img-${nextNum}`).classList.add("showing")
+        }, 3000 || options.seconds)
 }

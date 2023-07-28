@@ -204,7 +204,7 @@ export default function SideNavigation() {
   // Start of page
   return (
     <div
-      className="side-menu mt-[1px] absolute h-screen max-[500px]:w-full max-[750px]:w-2/4 max-[1024px]:w-1/4 bg-slate-800 -right-full duration-[1s] shadow-lg shadow-black top-full"
+      className="side-menu mt-[1px] absolute h-screen max-[500px]:w-full max-[750px]:w-2/4 max-[1024px]:w-1/4 bg-slate-800 -right-full duration-[1s] shadow-lg shadow-black top-full min-[1025px]:hidden"
     >
       <div className="flex flex-col overflow-y-scroll duration-[1s] h-full text-white w-full relative">
         <ul className="flex w-full items-center flex-col font-semibold text-xl">

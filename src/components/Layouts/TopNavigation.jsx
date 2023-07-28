@@ -17,7 +17,9 @@ export default function TopNavigation() {
     document.querySelector(".third").classList.toggle("open");
     document.querySelector(".side-menu").classList.toggle("right-0");
     document.querySelector(".side-menu").classList.toggle("-right-full");
-    if (document.querySelector("[data-sidenav]").classList.contains("right-0")) {
+    if (
+      document.querySelector("[data-sidenav]").classList.contains("right-0")
+    ) {
       document.querySelector("[data-sidenav]").classList.add("-right-full");
       document.querySelector("[data-sidenav]").classList.remove("right-0");
     }
@@ -129,7 +131,7 @@ export default function TopNavigation() {
   }, [jwtToken, toggleRefresh]);
   return (
     <>
-      <div id="NavBlock" className="h-[100px]"></div>
+      <div id="NavBlock" className="h-[165px] max-[1024px]:h-[100px]"></div>
       <nav
         className="{/*bg-gradient-to-r from-[#0f1f47] to-[#5f6984] */} object-cover w-full flex items-center flex-col fixed top-0 border-b-white border-b shadow-xl z-20"
         id="MyNav"
@@ -158,8 +160,8 @@ export default function TopNavigation() {
             </div>
           </Link>
           <div className=" h-full flex place-self-end max-lg:hidden">
-          {/* <MkYrMdl /> */}
-          <MkYrMdl2 />
+            {/* <MkYrMdl /> */}
+            {/* <MkYrMdl2 /> */}
             <ul className="flex w-full items-center text-white font-medium text-md font-poppins">
               <li className="group relative flex justify-center">
                 <Link
@@ -235,6 +237,10 @@ export default function TopNavigation() {
               <span className="h-[3px] w-full absolute bg-white top-full third duration-300"></span>
             </div>
           </div>
+        </div>
+        <div className="w-full py-4 ps-24 bg-stone-900 hidden min-[1024px]:flex flex-row items-center">
+          {/* Commented out original placement in case you hated this */}
+          <MkYrMdl2 />
         </div>
         <SideNavigation />
       </nav>

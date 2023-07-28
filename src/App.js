@@ -5,6 +5,7 @@ import TopNavigation from "./components/Layouts/TopNavigation";
 import "./App.css";
 // import Test from "./components/Test";
 import Footer from "./components/Layouts/Footer";
+import { DBProvider } from "./components/contexts/Context";
 
 function App() {
   const [jwtToken, setJwtToken] = useState("");
@@ -102,64 +103,29 @@ function App() {
     //   .catch((err) => {
     //     console.log(err);
     //   });
-      
-
-    }, [jwtToken, toggleRefresh]);
-    // console.log(categories);
-    
+  }, [jwtToken, toggleRefresh]);
+  // console.log(categories);
 
   return (
     <div className="">
-      <TopNavigation data={jwtToken} />
-      {/* This row was creating a margin under the nav and above slideshow */}
-      {/* <div className="row mt-20 ">
-        <div className="col text-end"></div>
-
-        <hr className="mb-3" />
-      </div> */}
-      {/* <div className="col-md-2">
-          <nav>
-            <div className="list-group">
-              {jwtToken !== "" && (
-                <>
-                  <Link
-                    to="/admin/Product/0"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Add Products
-                  </Link>
-                  <Link
-                    to="/Admin"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Manage Catalogue
-                  </Link>
-                  <Link
-                    to="/GraphQL"
-                    className="list-group-item list-group-item-action"
-                  >
-                    GraphQL
-                  </Link>
-                </>
-              )}
-            </div>
-          </nav>
-        </div> */}
-      <div id="App">
-        <div className="">
-          <Alert message={alertMessage} className={alertClassName} />
-          <Outlet
-            context={{
-              jwtToken,
-              setJwtToken,
-              setAlertClassName,
-              setAlertMessage,
-              toggleRefresh,
-            }}
-          />
+      <DBProvider>
+        <TopNavigation data={jwtToken} />
+        <div id="App">
+          <div className="">
+            <Alert message={alertMessage} className={alertClassName} />
+            <Outlet
+              context={{
+                jwtToken,
+                setJwtToken,
+                setAlertClassName,
+                setAlertMessage,
+                toggleRefresh,
+              }}
+            />
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </DBProvider>
     </div>
   );
 }
