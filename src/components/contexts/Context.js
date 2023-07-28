@@ -12,6 +12,8 @@ export const DBProvider = ({ children }) => {
   const [selYears, setSelYears] = useState([]);
   const [selMakes, setSelMakes] = useState([]);
   const [selModels, setSelModels] = useState([]);
+  const [filteredCategories, setFilteredCategories] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   // Sets years and makes on page load or empty selects. ONLY ON PAGE LOAD
   const setSelectYearsAndMakes = async () => {
@@ -38,11 +40,37 @@ export const DBProvider = ({ children }) => {
   const filterByMake = async (selYear, selMake) => {
     try {
       const result = await axios.get(`http://10.0.1.244/api/v2/filter?year=${selYear}&make=${selMake}`);
-      console.log(result);
       const models = result.data.models;
       setSelModels([])
       models.forEach((model) => {
         setSelModels((selModels) => [...selModels, model]);
+      });
+    } catch (err) {
+      return console.log(err);
+    }
+  }
+
+  const getCategoriesByModel = async (selYear, selMake, selModel) => {
+    try {
+      const result = await axios.get(`http://10.0.1.244/api/v2/categories?model=${selModel}&year=${selYear}&make=${selMake}`);
+      const categories = result.data;
+      setFilteredCategories([])
+      categories.forEach((category) => {
+        setFilteredCategories((filteredCategories) => [...filteredCategories, category]);
+      });
+    } catch (err) {
+      return console.log(err);
+    }
+  }
+
+  const getFilteredProducts = async (categoryId, selYear, selMake, selModel) => {
+    try {
+      const result = await axios.get(`http://10.0.1.244/api/v2/categories/${categoryId}?model=${selModel}&year=${selYear}&make=${selMake}`);
+      console.log(result);
+      const products = result.data;
+      setFilteredProducts([])
+      products.forEach((category) => {
+        setFilteredProducts((filteredProducts) => [...filteredProducts, category]);
       });
     } catch (err) {
       return console.log(err);
@@ -73,8 +101,12 @@ export const DBProvider = ({ children }) => {
     selYears,
     selMakes,
     selModels,
+    filteredCategories,
+    filteredProducts,
     filterByYear,
-    filterByMake
+    filterByMake,
+    getCategoriesByModel,
+    getFilteredProducts
   };
 
   return (

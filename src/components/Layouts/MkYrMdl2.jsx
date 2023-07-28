@@ -6,14 +6,28 @@ import { useDB } from "../contexts/Context";
 
 export default function MkYrMdl2() {
   // Initial setup
-  const { selYears, selMakes, selModels, filterByYear, filterByMake } = useDB();
+  const {
+    selYears,
+    selMakes,
+    selModels,
+    filteredCategories,
+    filterByYear,
+    filterByMake,
+    getCategoriesByModel,
+    getFilteredProducts,
+  } = useDB();
   // The use of refs is for the selects current values to always be current,
   // rather than setting these values on element change which is an expensive call
   // in react
   const selectedYear = useRef();
   const selectedMake = useRef();
   const selectedModel = useRef();
+  const selectedCategory = useRef();
 
+  const [yearValue, setYearValue] = useState("");
+  const [makeValue, setMakeValue] = useState("");
+  const [modelValue, setModelValue] = useState("");
+  
   // const [years, setYears] = useState(()=>{
   //   return selYears;
   // });
@@ -204,6 +218,10 @@ export default function MkYrMdl2() {
                       onChange={() => {
                         selectedMake.current.value = "";
                         selectedModel.current.value = "";
+                        selectedCategory.current.value = "";
+                        setYearValue(selectedYear.current.value)
+                        setMakeValue(selectedMake.current.value)
+                        setModelValue(selectedModel.current.value)
                         filterByYear(selectedYear.current.value);
                       }}
                     >
@@ -217,7 +235,7 @@ export default function MkYrMdl2() {
                     </select>
                   </div>
                 </div>
-                <div className="form-group px-3 relative max-[1024px]:w-full max-[1024px]:mb-6">
+                <div className={`form-group px-3 relative max-[1024px]:w-full max-[1024px]:mb-6 ${(yearValue != "" ? 'inline-block' : 'hidden')}`}>
                   {/* <label className="col-sm-2 control-label absolute -top-5 left-3 text-white max-[1024px]:-top-6">
                     Make
                   </label> */}
@@ -228,7 +246,13 @@ export default function MkYrMdl2() {
                       ref={selectedMake}
                       onChange={() => {
                         selectedModel.current.value = "";
-                        filterByMake(selectedYear.current.value, selectedMake.current.value);
+                        selectedCategory.current.value = "";
+                        setMakeValue(selectedMake.current.value)
+                        setModelValue(selectedModel.current.value)
+                        filterByMake(
+                          selectedYear.current.value,
+                          selectedMake.current.value
+                        );
                       }}
                     >
                       <option value="">Select Make</option>
@@ -241,7 +265,7 @@ export default function MkYrMdl2() {
                   </div>
                 </div>
 
-                <div className="form-group px-3 relative max-[1024px]:w-full max-[1024px]:mb-6">
+                <div className={`form-group px-3 relative max-[1024px]:w-full max-[1024px]:mb-6 ${(makeValue != "" ? 'inline-block' : 'hidden')}`}>
                   {/* <label className="col-sm-2 control-label absolute -top-5 left-3 text-white max-[1024px]:-top-6">
                     Model
                   </label> */}
@@ -250,14 +274,49 @@ export default function MkYrMdl2() {
                       className="form-control rounded-md text-lg pe-2 py-1 max-[1024px]:w-full"
                       id="selModel"
                       ref={selectedModel}
-                      onChange={(e) =>
-                        setData({ ...data, selModel: e.target.value })
-                      }
+                      onChange={(e) => {
+                        selectedCategory.current.value = "";
+                        setModelValue(selectedModel.current.value)
+                        getCategoriesByModel(
+                          selectedYear.current.value,
+                          selectedMake.current.value,
+                          selectedModel.current.value
+                        );
+                        setData({ ...data, selModel: e.target.value });
+                      }}
                     >
                       <option value="">Select Model</option>
                       {Object.keys(selModels).map((key, index) => (
                         <option key={key} value={selModels[index].id}>
                           {selModels[index].model}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className={`form-group px-3 relative max-[1024px]:w-full max-[1024px]:mb-6 ${(modelValue != "" ? 'inline-block' : 'hidden')}`}>
+                  {/* <label className="col-sm-2 control-label absolute -top-5 left-3 text-white max-[1024px]:-top-6">
+                    Model
+                  </label> */}
+                  <div className="col-sm-10 max-[1024px]:w-full">
+                    <select
+                      className="form-control rounded-md text-lg pe-2 py-1 max-[1024px]:w-full"
+                      id="selModel"
+                      ref={selectedCategory}
+                      onChange={(e) => {
+                        getFilteredProducts(
+                          selectedCategory.current.value,
+                          selectedYear.current.value,
+                          selectedMake.current.value,
+                          selectedModel.current.value
+                        );
+                      }}
+                    >
+                      <option value="">Select Category</option>
+                      {Object.keys(filteredCategories).map((key, index) => (
+                        <option key={key} value={filteredCategories[index].id}>
+                          {filteredCategories[index].name}
                         </option>
                       ))}
                     </select>
