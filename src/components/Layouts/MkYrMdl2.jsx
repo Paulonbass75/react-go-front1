@@ -23,10 +23,6 @@ export default function MkYrMdl2() {
   const selectedMake = useRef();
   const selectedModel = useRef();
   const selectedCategory = useRef();
-
-  const [yearValue, setYearValue] = useState("");
-  const [makeValue, setMakeValue] = useState("");
-  const [modelValue, setModelValue] = useState("");
   
   // const [years, setYears] = useState(()=>{
   //   return selYears;
@@ -219,9 +215,6 @@ export default function MkYrMdl2() {
                         selectedMake.current.value = "";
                         selectedModel.current.value = "";
                         selectedCategory.current.value = "";
-                        setYearValue(selectedYear.current.value)
-                        setMakeValue(selectedMake.current.value)
-                        setModelValue(selectedModel.current.value)
                         filterByYear(selectedYear.current.value);
                       }}
                     >
@@ -235,7 +228,7 @@ export default function MkYrMdl2() {
                     </select>
                   </div>
                 </div>
-                <div className={`form-group px-3 relative max-[1024px]:w-full max-[1024px]:mb-6 ${(yearValue != "" ? 'inline-block' : 'hidden')}`}>
+                <div className="form-group px-3 relative max-[1024px]:w-full max-[1024px]:mb-6">
                   {/* <label className="col-sm-2 control-label absolute -top-5 left-3 text-white max-[1024px]:-top-6">
                     Make
                   </label> */}
@@ -247,8 +240,6 @@ export default function MkYrMdl2() {
                       onChange={() => {
                         selectedModel.current.value = "";
                         selectedCategory.current.value = "";
-                        setMakeValue(selectedMake.current.value)
-                        setModelValue(selectedModel.current.value)
                         filterByMake(
                           selectedYear.current.value,
                           selectedMake.current.value
@@ -265,7 +256,7 @@ export default function MkYrMdl2() {
                   </div>
                 </div>
 
-                <div className={`form-group px-3 relative max-[1024px]:w-full max-[1024px]:mb-6 ${(makeValue != "" ? 'inline-block' : 'hidden')}`}>
+                <div className="form-group px-3 relative max-[1024px]:w-full max-[1024px]:mb-6">
                   {/* <label className="col-sm-2 control-label absolute -top-5 left-3 text-white max-[1024px]:-top-6">
                     Model
                   </label> */}
@@ -276,7 +267,6 @@ export default function MkYrMdl2() {
                       ref={selectedModel}
                       onChange={(e) => {
                         selectedCategory.current.value = "";
-                        setModelValue(selectedModel.current.value)
                         getCategoriesByModel(
                           selectedYear.current.value,
                           selectedMake.current.value,
@@ -295,7 +285,7 @@ export default function MkYrMdl2() {
                   </div>
                 </div>
 
-                <div className={`form-group px-3 relative max-[1024px]:w-full max-[1024px]:mb-6 ${(modelValue != "" ? 'inline-block' : 'hidden')}`}>
+                <div className="form-group px-3 relative max-[1024px]:w-full max-[1024px]:mb-6">
                   {/* <label className="col-sm-2 control-label absolute -top-5 left-3 text-white max-[1024px]:-top-6">
                     Model
                   </label> */}
