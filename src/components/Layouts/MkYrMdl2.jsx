@@ -10,7 +10,6 @@ export default function MkYrMdl2() {
     selYears,
     selMakes,
     selModels,
-    filteredCategories,
     filterByYear,
     filterByMake,
     getCategoriesByModel,
@@ -22,8 +21,6 @@ export default function MkYrMdl2() {
   const selectedYear = useRef();
   const selectedMake = useRef();
   const selectedModel = useRef();
-  const selectedCategory = useRef();
-  
   // const [years, setYears] = useState(()=>{
   //   return selYears;
   // });
@@ -196,120 +193,91 @@ export default function MkYrMdl2() {
   // ...
   // Rest of the component
   return (
-    <div className="container text-stone-600">
-      <div className="row h-full">
-        <div className="col-md-12 h-full">
-          <div className="panel panel-default h-full">
-            <div className="panel-heading h-full">
-              <div className="panel-body flex flex-row items-center h-full max-[1024px]:flex-col">
-                <div className="form-group px-3 relative max-[1024px]:w-full">
-                  {/* <label className="col-sm-2 control-label absolute -top-5 left-3 text-white max-[1024px]:-top-6">
+    <div className="w-full py-4 ps-24 bg-stone-900 hidden min-[1024px]:flex flex-row items-center sticky">
+      <div className="container text-stone-600">
+        <div className="row h-full">
+          <div className="col-md-12 h-full">
+            <div className="panel panel-default h-full">
+              <div className="panel-heading h-full">
+                <div className="panel-body flex flex-row items-center h-full max-[1024px]:flex-col">
+                  <div className="form-group px-3 relative max-[1024px]:w-full">
+                    {/* <label className="col-sm-2 control-label absolute -top-5 left-3 text-white max-[1024px]:-top-6">
                     Year
                   </label> */}
-                  <div className="col-sm-10 max-[1024px]:w-full max-[1024px]:mb-6">
-                    <select
-                      className="form-control rounded-md text-lg pe-2 py-1 max-[1024px]:w-full"
-                      id="selYear"
-                      ref={selectedYear}
-                      onChange={() => {
-                        selectedMake.current.value = "";
-                        selectedModel.current.value = "";
-                        selectedCategory.current.value = "";
-                        filterByYear(selectedYear.current.value);
-                      }}
-                    >
-                      {/* selYears is the array of years coming from the context */}
-                      <option value="">Select Year</option>
-                      {Object.keys(selYears).map((key, i) => (
-                        <option key={key} value={selYears[i]}>
-                          {selYears[i]}
-                        </option>
-                      ))}
-                    </select>
+                    <div className="col-sm-10 max-[1024px]:w-full max-[1024px]:mb-6">
+                      <select
+                        className="form-control rounded-md text-lg pe-2 py-1 max-[1024px]:w-full"
+                        id="selYear"
+                        ref={selectedYear}
+                        onChange={() => {
+                          selectedMake.current.value = "";
+                          selectedModel.current.value = "";
+                          filterByYear(selectedYear.current.value);
+                        }}
+                      >
+                        {/* selYears is the array of years coming from the context */}
+                        <option value="">Select Year</option>
+                        {Object.keys(selYears).map((key, i) => (
+                          <option key={key} value={selYears[i]}>
+                            {selYears[i]}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div className="form-group px-3 relative max-[1024px]:w-full max-[1024px]:mb-6">
-                  {/* <label className="col-sm-2 control-label absolute -top-5 left-3 text-white max-[1024px]:-top-6">
+                  <div className="form-group px-3 relative max-[1024px]:w-full max-[1024px]:mb-6">
+                    {/* <label className="col-sm-2 control-label absolute -top-5 left-3 text-white max-[1024px]:-top-6">
                     Make
                   </label> */}
-                  <div className="col-sm-10 max-[1024px]:w-full">
-                    <select
-                      className="form-control rounded-md text-lg pe-2 py-1 max-[1024px]:w-full"
-                      id="selMake"
-                      ref={selectedMake}
-                      onChange={() => {
-                        selectedModel.current.value = "";
-                        selectedCategory.current.value = "";
-                        filterByMake(
-                          selectedYear.current.value,
-                          selectedMake.current.value
-                        );
-                      }}
-                    >
-                      <option value="">Select Make</option>
-                      {Object.keys(selMakes).map((key, index) => (
-                        <option key={key} value={selMakes[index].id}>
-                          {selMakes[index].make}
-                        </option>
-                      ))}
-                    </select>
+                    <div className="col-sm-10 max-[1024px]:w-full">
+                      <select
+                        className="form-control rounded-md text-lg pe-2 py-1 max-[1024px]:w-full"
+                        id="selMake"
+                        ref={selectedMake}
+                        onChange={() => {
+                          selectedModel.current.value = "";
+                          filterByMake(
+                            selectedYear.current.value,
+                            selectedMake.current.value
+                          );
+                        }}
+                      >
+                        <option value="">Select Make</option>
+                        {Object.keys(selMakes).map((key, index) => (
+                          <option key={key} value={selMakes[index].id}>
+                            {selMakes[index].make}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
-                </div>
 
-                <div className="form-group px-3 relative max-[1024px]:w-full max-[1024px]:mb-6">
-                  {/* <label className="col-sm-2 control-label absolute -top-5 left-3 text-white max-[1024px]:-top-6">
+                  <div className="form-group px-3 relative max-[1024px]:w-full max-[1024px]:mb-6">
+                    {/* <label className="col-sm-2 control-label absolute -top-5 left-3 text-white max-[1024px]:-top-6">
                     Model
                   </label> */}
-                  <div className="col-sm-10 max-[1024px]:w-full">
-                    <select
-                      className="form-control rounded-md text-lg pe-2 py-1 max-[1024px]:w-full"
-                      id="selModel"
-                      ref={selectedModel}
-                      onChange={(e) => {
-                        selectedCategory.current.value = "";
-                        getCategoriesByModel(
-                          selectedYear.current.value,
-                          selectedMake.current.value,
-                          selectedModel.current.value
-                        );
-                        setData({ ...data, selModel: e.target.value });
-                      }}
-                    >
-                      <option value="">Select Model</option>
-                      {Object.keys(selModels).map((key, index) => (
-                        <option key={key} value={selModels[index].id}>
-                          {selModels[index].model}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div className="form-group px-3 relative max-[1024px]:w-full max-[1024px]:mb-6">
-                  {/* <label className="col-sm-2 control-label absolute -top-5 left-3 text-white max-[1024px]:-top-6">
-                    Model
-                  </label> */}
-                  <div className="col-sm-10 max-[1024px]:w-full">
-                    <select
-                      className="form-control rounded-md text-lg pe-2 py-1 max-[1024px]:w-full"
-                      id="selModel"
-                      ref={selectedCategory}
-                      onChange={(e) => {
-                        getFilteredProducts(
-                          selectedCategory.current.value,
-                          selectedYear.current.value,
-                          selectedMake.current.value,
-                          selectedModel.current.value
-                        );
-                      }}
-                    >
-                      <option value="">Select Category</option>
-                      {Object.keys(filteredCategories).map((key, index) => (
-                        <option key={key} value={filteredCategories[index].id}>
-                          {filteredCategories[index].name}
-                        </option>
-                      ))}
-                    </select>
+                    <div className="col-sm-10 max-[1024px]:w-full">
+                      <select
+                        className="form-control rounded-md text-lg pe-2 py-1 max-[1024px]:w-full"
+                        id="selModel"
+                        ref={selectedModel}
+                        onChange={(e) => {
+                          getCategoriesByModel(
+                            selectedYear.current.value,
+                            selectedMake.current.value,
+                            selectedModel.current.value
+                          );
+                          setData({ ...data, selModel: e.target.value });
+                        }}
+                      >
+                        <option value="">Select Model</option>
+                        {Object.keys(selModels).map((key, index) => (
+                          <option key={key} value={selModels[index].id}>
+                            {selModels[index].model}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>

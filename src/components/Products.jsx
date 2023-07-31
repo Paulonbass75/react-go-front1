@@ -2,9 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DBProvider } from "./contexts/Context";
 import Card from "./Card";
+import { useParams } from "react-router-dom";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
+
+  const { id } = useParams();
+
+  console.log(id);
 
   useEffect(() => {
     axios.get("/api/v2/products").then((response) => {

@@ -59,38 +59,3 @@ if (error !== "") {
   )
 }
 }
-
-
-// from filter
-
-
-// const catSel = (catId) => {
-//     if (!data.selModel) {
-//       data.selMake = null;
-//       data.selYear = null;
-//       axios
-//         .get("http://10.0.1.244/api/v2/categories/" + catId)
-//         .then((response) => {
-//           data.categories = response.data.categories;
-//           data.products = response.data.products;
-//         });
-//     }
-//     if (data.selModel) {
-//       axios
-//         .get(
-//           "/api/v2/categories/" +
-//             catId +
-//             "?year=" +
-//             data.selYear +
-//             "&make=" +
-//             data.selMake +
-//             "&model=" +
-//             data.selModel
-//         )
-//         .then((response) => {
-//           data.categories = response.data.categories;
-//           data.products = response.data.products;
-//         });
-//       console.log(catId);
-//     }
-//   };

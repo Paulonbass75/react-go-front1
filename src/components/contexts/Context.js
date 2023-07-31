@@ -12,9 +12,10 @@ export const DBProvider = ({ children }) => {
   const [selYears, setSelYears] = useState([]);
   const [selMakes, setSelMakes] = useState([]);
   const [selModels, setSelModels] = useState([]);
-  const [filteredCategories, setFilteredCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [childCategories, setChildCategories] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-
+  const [products, setProducts] = useState([]);
   // Sets years and makes on page load or empty selects. ONLY ON PAGE LOAD
   const setSelectYearsAndMakes = async () => {
     try {
@@ -23,6 +24,27 @@ export const DBProvider = ({ children }) => {
       return console.log(err);
     }
   };
+
+  const getCategories = async () => {
+    try {
+      return await axios.get("http://10.0.1.244/api/v2/categories");
+    } catch (err) {
+      return console.log(err);
+    }
+  }
+
+  const getChildCategories = async (categoryId) => {
+    try {
+      const result = await axios.get(`http://10.0.1.244/api/v2/categories/${categoryId}`);
+      const categoriesResult = result.data.categories;
+      setChildCategories([]);
+      categoriesResult.forEach((category) => {
+        setChildCategories((childCategories) => [...childCategories, category])
+      })
+    } catch (err) {
+      return console.log(err);
+    }
+  }
  //Sets makes by year selected, changes make options everytime year is selected.
   const filterByYear = async (selYear) => {
     try {
@@ -53,10 +75,10 @@ export const DBProvider = ({ children }) => {
   const getCategoriesByModel = async (selYear, selMake, selModel) => {
     try {
       const result = await axios.get(`http://10.0.1.244/api/v2/categories?model=${selModel}&year=${selYear}&make=${selMake}`);
-      const categories = result.data;
-      setFilteredCategories([])
-      categories.forEach((category) => {
-        setFilteredCategories((filteredCategories) => [...filteredCategories, category]);
+      const allCategories = result.data;
+      setCategories([])
+      allCategories.forEach((category) => {
+        setCategories((categories) => [...categories, category]);
       });
     } catch (err) {
       return console.log(err);
@@ -77,23 +99,27 @@ export const DBProvider = ({ children }) => {
     }
   }
 
-  const getProductbyCategory = async (categoryId, selYear, selMake, selModel) => {
+  const getProducts = async (categoryId, selYear, selMake, selModel) => {
     try {
-      const result = await axios.get(`http://10.0.1.244/api/v2/categories/${categoryId}?model=${selModel}&year=${selYear}&make=${selMake}`);
-      console.log(result);
-      const products = result.data;
-      setFilteredProducts([])
-      products.forEach((category) => {
-        setFilteredProducts((filteredProducts) => [...filteredProducts, category]);
-      });
+      const result = await axios.get(`http://10.0.1.244/api/v2/products`);
+      return result
     } catch (err) {
       return console.log(err);
     }
   }
 
-  const setSelectMakes = () => {};
-
-  const setSelectModels = () => {};
+  const getProductsByPageNumber = async (pageNumber) => {
+    try {
+      const result = await axios.get(`http://10.0.1.244/api/v2/products?page=${pageNumber}`);
+      const productResult = result.data.products;
+      setProducts([])
+      productResult.forEach((product) => {
+        setProducts((products) => [...products, product]);
+      });
+    } catch (err) {
+      return console.log(err);
+    }
+  }
 
   useEffect(() => {
     // Calling here to initialize on context load, only initializes on page load
@@ -109,17 +135,35 @@ export const DBProvider = ({ children }) => {
         setSelMakes((selMakes) => [...selMakes, make]);
       });
     });
+    getCategories().then((res) => {
+      const allCategories = res.data;
+      setCategories([])
+      allCategories.forEach((category) => {
+        setCategories((categories) => [...categories, category]);
+      });
+    });
+    getProducts().then((res) => {
+      const productResult = res.data.products;
+      setProducts([])
+      productResult.forEach((product) => {
+        setProducts((products) => [...products, product]);
+      });
+    });
   }, []);
 
   const value = {
     selYears,
     selMakes,
     selModels,
-    filteredCategories,
     filteredProducts,
+    products,
+    categories,
+    childCategories,
     filterByYear,
     filterByMake,
+    getChildCategories,
     getCategoriesByModel,
+    getProductsByPageNumber,
     getFilteredProducts
   };
 

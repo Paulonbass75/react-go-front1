@@ -48,9 +48,7 @@ export default function Card(props) {
       {product.Image !== "" && (
         <div className="mb-3">
           <img
-            src={
-              props.img != null ? props.img : "https://picsum.photos/200/300"
-            }
+            src={`https://www.autometaldirect.com/images/${props.image}`}
             alt="img"
             className="object-fit w-full aspect-square"
           />

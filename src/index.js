@@ -15,6 +15,7 @@ import OneCategory from "./components/OneCategory";
 import Card from "./components/Card";
 import SignUp from "./components/SignUp";
 import ContactForm from "./components/ContactForm.jsx";
+import AllProducts from "./components/AllProducts";
 import ShoppingCart from "./components/ShoppingCart";
 
 const router = createBrowserRouter([
@@ -24,8 +25,9 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Home /> },
-      { path: "/Products", element: <Products />, title: "Products" },
+      { path: "/Products/:id", element: <Products />, title: "Products" },
       { path: "/Product/:id", element: <Product /> },
+      { path: "/AllProducts", element: <AllProducts /> },
       { path: "/Categories", element: <Categories />, title: "Categories" },
       { path: "/Categories/:id", element: <OneCategory /> },
       { path: "/admin/Products/0", element: <EditProducts /> },

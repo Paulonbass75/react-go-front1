@@ -131,7 +131,7 @@ export default function TopNavigation() {
   }, [jwtToken, toggleRefresh]);
   return (
     <>
-      <div id="NavBlock" className="h-[165px] max-[1024px]:h-[100px]"></div>
+      <div id="NavBlock" className="h-[100px]"></div>
       <nav
         className="{/*bg-gradient-to-r from-[#0f1f47] to-[#5f6984] */} object-cover w-full flex items-center flex-col fixed top-0 border-b-white border-b shadow-xl z-20"
         id="MyNav"
@@ -212,6 +212,13 @@ export default function TopNavigation() {
                   Contact Us
                 </Link>
               </li>
+              <li className="group relative flex justify-center">
+                <button
+                  className="relative hover:text-[#00cbff] duration-200 mx-5 py-2"
+                >
+                  <i className="bi bi-cart text-2xl"></i>
+                </button>
+              </li>
               {/* Left this here for reference on dropdown */}
               {/* <li className='group relative flex justify-center'>
                                 <a className='relative hover:text-[#00cbff] duration-200 mx-5 py-2' href="/">Store <i className="bi bi-caret-right-fill text-sm before:content-['\F231'] group-hover:before:rotate-90 before:duration-200 before:transition-transform"></i></a>
@@ -238,10 +245,8 @@ export default function TopNavigation() {
             </div>
           </div>
         </div>
-        <div className="w-full py-4 ps-24 bg-stone-900 hidden min-[1024px]:flex flex-row items-center">
           {/* Commented out original placement in case you hated this */}
-          <MkYrMdl2 />
-        </div>
+          {/* <MkYrMdl2 /> */}
         <SideNavigation />
       </nav>
     </>

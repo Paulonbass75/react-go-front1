@@ -1,42 +1,20 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
+import { useDB } from "./contexts/Context";
+import CategoryCards from "./CategoryCards";
 import Card from "./Card";
 
 export default function OneCategory() {
-  // get prop passed from Categories.jsx
-  // const location = useLocation();
-  //   const { categoryName } = location.state;
-
-  // set stateful variable for categories
-  const [categories, setCategories] = useState([]);
+  const { childCategories, getChildCategories } = useDB();
 
   // get id from url
   let { id } = useParams();
 
   // use useEffect to fetch categories for this category
   useEffect(() => {
-    const headers = new Headers();
-    headers.append("Content-Type", "application/json");
-
-    const requestOptions = {
-      method: "GET",
-      headers: headers,
-    };
-    fetch(`http://10.0.1.244/api/v2/categories/${id}`, requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        setCategories(data.categories);
-        console.log(data.categories);
-      })
-      .catch((error) => {
-        console.log("error", error);
-        alert(error);
-        window.location.reload();
-        return;
-      });
-  }, [id]);
-
+    getChildCategories(id);
+  }, []);
   //fetch data from api by id and map using array of categories and children
 
   return (
@@ -44,9 +22,8 @@ export default function OneCategory() {
     <div className="">
       <div className="py-20 w-full mx-auto bg-white shadow-xl px-20">
         <div className="flex-row justify-evenly flex-wrap w-full">
-          <Link to={`/products/`}>
-
-          {categories.map((cData) => (
+          {/* <Link to={`/products/`}>
+            {childCategories.map((cData) => (
               <Card
                 key={cData.id}
                 id={cData.id}
@@ -55,8 +32,23 @@ export default function OneCategory() {
                 image={cData.img}
                 price={cData.price}
               />
-          ))}
-          </Link>
+            ))}
+          </Link> */}
+          <div className="flex justify-center">
+            <div className="flex flex-row justify-center flex-wrap w-fit">
+              {childCategories.map((category, index) => {
+                return (
+                  <Link key={category.id} to={`/AllProducts`}>
+                    <CategoryCards
+                      id={category.id}
+                      img={category.img}
+                      name={category.name}
+                    />
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </div>
