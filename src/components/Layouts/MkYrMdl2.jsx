@@ -193,7 +193,7 @@ export default function MkYrMdl2() {
   // ...
   // Rest of the component
   return (
-    <div className="w-full py-4 ps-24 bg-stone-900 hidden min-[1024px]:flex flex-row items-center sticky">
+    
       <div className="container text-stone-600">
         <div className="row h-full">
           <div className="col-md-12 h-full">
@@ -285,6 +285,6 @@ export default function MkYrMdl2() {
           </div>
         </div>
       </div>
-    </div>
+ 
   );
 }

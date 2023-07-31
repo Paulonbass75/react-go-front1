@@ -12,7 +12,9 @@ const Home = () => {
     <>
       <div className="text-center w-full">
         <Slideshow />
-        <MkYrMdl2 />
+        <div className="w-full py-4 ps-24 bg-stone-900 hidden min-[1024px]:flex flex-row items-center sticky">
+          <MkYrMdl2 />
+        </div>
         <div className="w-11/12 mx-auto bg-white shadow-xl px-20 pt-10 pb-20 ">
           {/* <Test /> */}
           {/* <AllProducts /> */}
