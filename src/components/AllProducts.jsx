@@ -16,6 +16,7 @@ export default function AllProducts() {
   };
   return (
     <>
+    <Link to="/product">
       <div className="flex justify-center">
         <div className="flex flex-row justify-center flex-wrap w-fit">
           {products.map((product, index) => {
@@ -50,6 +51,7 @@ export default function AllProducts() {
           })}
         </div>
       </div>
+    </Link>
       <div>
         <div className="w-full flex justify-between">
           {pageNumber != 1 ? (

@@ -38,7 +38,7 @@ export default function OneCategory() {
             <div className="flex flex-row justify-center flex-wrap w-fit">
               {childCategories.map((category, index) => {
                 return (
-                  <Link key={category.id} to={`/AllProducts`}>
+                  <Link key={category.id} to={`/Products`}>
                     <CategoryCards
                       id={category.id}
                       img={category.img}
