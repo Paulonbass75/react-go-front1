@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDB } from "./contexts/Context";
+import { Link } from "react-router-dom";
 
 let pageNumber = 1;
 export default function AllProducts() {
-  const { products, getProductsByPageNumber } =
-    useDB();
+  const { products, getProductsByPageNumber } = useDB();
   const [disabled, setDisabled] = useState(true);
   const prevPage = () => {
     pageNumber = pageNumber - 1;
@@ -38,6 +38,11 @@ export default function AllProducts() {
                   <h3 className="text-lg font-medium">
                     {product.product_name}
                   </h3>
+                  {product.product_instock === "true" ? (
+                    <p className="text-green-500">In Stock</p>
+                  ) : (
+                    <p className="text-red-500">Out of Stock</p>
+                  )}
                   <span>${price}</span>
                 </div>
               </div>
@@ -47,14 +52,28 @@ export default function AllProducts() {
       </div>
       <div>
         <div className="w-full flex justify-between">
-            {(pageNumber != 1) ? (
-          <button className="underline text-blue-700 text-lg" onClick={prevPage}>Prev</button>
-            ) : 
-            (
-                <button className="text-blue-700 opacity-75 text-lg"  onClick={prevPage} disabled>Prev</button>
-                  ) 
-            }
-          <button className="underline text-blue-700 text-lg" onClick={nextPage}>Next</button>
+          {pageNumber != 1 ? (
+            <button
+              className="underline text-blue-700 text-lg"
+              onClick={prevPage}
+            >
+              Prev
+            </button>
+          ) : (
+            <button
+              className="text-blue-700 opacity-75 text-lg"
+              onClick={prevPage}
+              disabled
+            >
+              Prev
+            </button>
+          )}
+          <button
+            className="underline text-blue-700 text-lg"
+            onClick={nextPage}
+          >
+            Next
+          </button>
         </div>
       </div>
     </>

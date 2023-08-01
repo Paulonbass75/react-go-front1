@@ -1,34 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useDB } from "./contexts/Context";
 
 const Product = () => {
-  const [product, setProduct] = useState({});
-  let { id } = useParams();
+  const { partNum } = useParams();
+  const { getProductByPartNumber, product } = useDB();
 
   useEffect(() => {
-    const headers = new Headers();
-    headers.append("Content-Type", "application/json");
-
-    const requestOptions = {
-      method: "GET",
-      headers: headers,
-    };
-
-    fetch(`/products/${id}`, requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        setProduct(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [id]);
-
-  if (product.category) {
-    product.category = Object.values(product.category);
-  } else {
-    product.category = [];
-  }
+    getProductByPartNumber(partNum);
+  }, []);
 
   return (
     <div>
